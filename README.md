@@ -2,7 +2,7 @@
 SMB sharing for Multiman and Open Playstation Loader on Raspberry Pi
 
 ## How it works
-psx-pi-smbshare is a preconfigured Raspbian based image for Raspberry Pi 1, 2, and  3.  It runs a [Samba](https://en.wikipedia.org/wiki/Samba_(software)) share, a pi-compatible build of [ps3netsrv](https://github.com/dirkvdb/ps3netsrv--), and reconfigures the ethernet port to act as a router.  This gives low-latency, direct access to the Samba service through an ethernet cable connection between a PS2/PS3 and Raspberry Pi.  This configuration is achieved by running [setup.sh](/setup.sh).  A pre-supplied [image](https://github.com/toolboc/psx-pi-smbshare/releases/download/v1.0/psx-smbshare-raspbian-stretch-lite.img) can be applied directly to a Micro-SD card using something like [etcher.io](https://etcher.io/).  The image will expand to use the full available space on the SD card when the OS is first booted.
+psx-pi-smbshare is a preconfigured Raspbian based image for Raspberry Pi 1, 2, and  3.  It runs a [Samba](https://en.wikipedia.org/wiki/Samba_(software)) share, a pi-compatible build of [ps3netsrv](https://github.com/dirkvdb/ps3netsrv--), and reconfigures the ethernet port to act as a router.  This gives low-latency, direct access to the Samba service through an ethernet cable connection between a PS2/PS3 and Raspberry Pi.  This configuration is achieved by running [setup.sh](/setup.sh).  A pre-supplied [image](https://github.com/toolboc/psx-pi-smbshare/releases/download/v1.1/psx-smbshare-raspbian-stretch-lite.img) can be applied directly to a Micro-SD card using something like [etcher.io](https://etcher.io/).  The image will expand to use the full available space on the SD card when the OS is first booted.
 
 ## What you can do with it
 psx-pi-smbshare works out of the box on PS3 with [MultiMAN](http://www.psx-place.com/threads/update2-multiman-v-04-81-00-01-02-base-update-stealth-for-cex-dex-updates-by-deank.12145/).  This functionality allows you to stream and backup up various games and media to the Samba share service running on the Raspberry Pi.
@@ -18,7 +18,7 @@ psx-pi-smbshare supports an optional ability to route traffic from the ethernet 
 * Micro-SD Card (8GB+ suggested)
 
 ## Flash the image
-Download the latest [psx-pi-smbshare release image](https://github.com/toolboc/psx-pi-smbshare/releases/download/v1.0/psx-smbshare-raspbian-stretch-lite.img) and burn it to a Micro-SD card with [etcher.io](http://etcher.io)
+Download the latest [psx-pi-smbshare release image](https://github.com/toolboc/psx-pi-smbshare/releases/download/v1.1/psx-smbshare-raspbian-stretch-lite.img) and burn it to a Micro-SD card with [etcher.io](http://etcher.io)
 
 ## Configuring Wireless Network
 If you wish to configure the wireless network on a Raspberry Pi 2 or 3, you need to add a file to **/boot** on the Micro-SD card.  
