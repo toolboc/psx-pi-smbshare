@@ -60,9 +60,26 @@ cd ~
 wget https://raw.githubusercontent.com/arpitjindal97/raspbian-recipes/master/wifi-to-eth-route.sh -O ~/wifi-to-eth-route.sh
 chmod 755 wifi-to-eth-route.sh
 
-# Set wifi-to-eth-route and ps3netsrv to run on startup
-{ echo -e "@reboot sudo bash /home/pi/wifi-to-eth-route.sh\n@reboot /usr/local/bin/ps3netsrv++ -d /share/"; } | crontab -u pi -
+# Install Xlink Kai
+wget http://cdn.teamxlink.co.uk/binary/kaiEngine-7.4.31-rev606.headless.ARM.tar.gz
+tar -xzvf kaiEngine-7.4.31-rev606.headless.ARM.tar.gz
+sudo cp kaiEngine-7.4.31/kaiengine /usr/local/bin
+sudo mkdir /root/.xlink
+
+cat <<'EOF' > ~/launchkai.sh
+while true; do
+    /usr/local/bin/kaiengine
+    sleep 1
+done
+EOF
+
+chmod 755 launchkai.sh
+
+
+# Set wifi-to-eth-route, ps3netsrv, and Xlink Kai to run on startup
+{ echo -e "@reboot sudo bash /home/pi/wifi-to-eth-route.sh\n@reboot /usr/local/bin/ps3netsrv++ -d /share/\n@reboot sudo bash /home/pi/launchkai.sh"; } | crontab -u pi -
 
 # Start services
 sudo /home/pi/wifi-to-eth-route.sh
 ps3netsrv++ -d /share/
+sudo kaiengine

@@ -9,7 +9,7 @@ psx-pi-smbshare works out of the box on PS3 with [MultiMAN](http://www.psx-place
 
 psx-pi-smbshare also works out of the box on PS2 with [Open Playstation Loader](https://github.com/ifcaro/Open-PS2-Loader) and supports streaming of PS2 backups located on the Samba share service. It can also work with [POPStarter for SMB](https://bitbucket.org/ShaolinAssassin/popstarter-documentation-stuff/wiki/smb-mode) to allow streaming of PS1 games from Open Playstation Loader.
 
-psx-pi-smbshare supports an optional ability to route traffic from the ethernet port through a wireless network connection.  
+psx-pi-smbshare supports an optional ability to route traffic from the ethernet port through a wireless network connection.  When this is configured, the XLink Kai Service can be used on your device.  Xlink Kai will probably work on any device that can access the service via direct ethernet port connection.  This includes Xbox, Gamecube, and PS2.
 
 # Quickstart
 
@@ -35,6 +35,9 @@ Create a file on **/boot** named **wpa_supplicant.conf** and supply the followin
 
 When the pi is next booted, it will attempt to connect to the wireless network in this configuration.  You are then able to access the raspberry pi on the network and allow for outbound connections from a PS2/PS3 over the wireless network.  
 The raspberry pi is configured to have a hostname `smbshare` with a user `pi` and a password of `raspberry`.  
+
+## Accessing the XLink Kai Service
+Visit http://smbshare:34522/ or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/
 
 ## Accessing the SMB Share
 With a wireless network configured, you should be able to access the SMB share by visiting `\\SMBSHARE\share` on windows or `smb://smbshare/share` on Mac / Linux.
