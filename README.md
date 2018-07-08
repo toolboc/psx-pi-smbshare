@@ -4,6 +4,8 @@ SMB sharing for Multiman and Open Playstation Loader on Raspberry Pi
 ## How it works
 psx-pi-smbshare is a preconfigured Raspbian based image for Raspberry Pi 1, 2, and  3.  It runs a [Samba](https://en.wikipedia.org/wiki/Samba_(software)) share, a pi-compatible build of [ps3netsrv](https://github.com/dirkvdb/ps3netsrv--), and reconfigures the ethernet port to act as a router.  This gives low-latency, direct access to the Samba service through an ethernet cable connection between a PS2/PS3 and Raspberry Pi.  This configuration is achieved by running [setup.sh](/setup.sh).  A pre-supplied [image](https://github.com/toolboc/psx-pi-smbshare/releases/download/v1.1/psx-smbshare-raspbian-stretch-lite.img) can be applied directly to a Micro-SD card using something like [etcher.io](https://etcher.io/).  The image will expand to use the full available space on the SD card when the OS is first booted.
 
+An [Xlink Kai](http://www.teamxlink.co.uk/) client is also included and accesscible at http://smbshare:34522/.  This allows for multi-player gaming over extended LAN.  The service is possible to use on a variety of devices including PS2, PS3, Xbox, Xbox 360, and Gamecube.  Just connect the ethernet cable to the device and access the Xlink Kai Service over Wi-Fi with a smart phone, tablet, or computer.
+
 ## What you can do with it
 psx-pi-smbshare works out of the box on PS3 with [MultiMAN](http://www.psx-place.com/threads/update2-multiman-v-04-81-00-01-02-base-update-stealth-for-cex-dex-updates-by-deank.12145/).  This functionality allows you to stream and backup up various games and media to the Samba share service running on the Raspberry Pi.
 
@@ -52,7 +54,17 @@ The share is preconfigured with a folder structure to accomodate ps3netsrv and O
 * Playstation 3 running a [recent release of MultiMAN](http://store.brewology.com/ahomebrew.php?brewid=24)
 
 1. Connect the pi ethernet port into the ethernet port of the PS3 and power the pi using the PS3 usb or an external power supply 
-2. In the PS3 XMB select "Settings" => "Network Settings" => "Internet Connection Settings" and configure to connect using the ethernet connection
+2. In the PS3 XMB select "Settings" => "Network Settings" => "Internet Connection Settings" and configure to connect using the ethernet connection as follows:
+    
+    "Internet Connection Settings" => "Custom" => "Wired" => "Auto-Detect" => "Manual"
+
+            IP Address = 192.168.2.2
+            Subnet Mask = 255.255.255.0
+            Default Router = 192.168.2.1
+            Primary DNS = 8.8.8.8
+            Secondary DNS = <leave blank or use your home router ip address>
+
+    "Automatic" => "Do Not Use" => "Enable"
 3. Launch MultiMAN
 4. Select "Settings" => "Network Servers"
 5. Configure using the Ip Address '192.168.2.1' (ip to the smbshare assigned by dhcp server running on the Pi) and Port '38008' (default)
@@ -73,13 +85,20 @@ Ensure that the following options are set:
 
         Ethernet Link Mode = Auto
         PS2 
-            IP address type = DHCP
+            IP address type = Static
+            IP address = 192.168.2.2
+            Mask = 255.255.255.0
+            Gateway = 192.168.2.1
+            DNS Server = 8.8.8.8
         SMB Server
             Address Type = IP
             Address = 192.168.2.1
             Port = 445
             Share = share
             Password = <not set>
+
+Don't forget to select "Save Config" when you return to "Settings"
+
 3. Reconnect or restart Open Playstation Loader
 4. PS2 Games will be listed under "ETH Games".  To add PS2 games, copy valid .iso backups to `\\SMBSHARE\share\DVD` or `\\SMBSHARE\share\CD`
 
@@ -107,9 +126,25 @@ Ensure that the following options are set:
 
     A detailed guide is available @ http://www.ps2-home.com/forum/viewtopic.php?f=64&t=5002
 
+## Playing Halo 2 online with Xlink Kai on Xbox
+
+** Prerequisites **
+* An original Xbox or Xbox 360 with backwards compatibility support
+* A copy of Halo 2
+* An Xlink Kai account from http://www.teamxlink.co.uk/
+
+1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
+2. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
+3. Plug the pi into the Xbox ethernet port and verify that you are able to obtain an ip automatically in Network Settings
+4. Vist the Xlink Kai service running @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your Xlink Kai account
+5. Select an available Halo game from the Xlink Kai portal (there are usually a few running in South America)
+6. Launch Halo 2 and select "System Link"
+7. Join a game and have fun!
+
 # Credits
 Thx to the following:
 * Jay-Jay for [OPL Daily Builds](https://github.com/Jay-Jay-OPL/OPL-Daily-Builds) 
 * danielb for [OPLM](http://www.ps2-home.com/forum/viewtopic.php?f=64&t=189)
 * dirkvdb for [ps3netsrv--](https://github.com/dirkvdb/ps3netsrv--)
 * arpitjindal97 for [wifi-to-eth-route.sh](https://github.com/arpitjindal97/raspbian-recipes/blob/master/wifi-to-eth-route.sh)
+* Team Xlink for [Xlink Kai](http://www.teamxlink.co.uk/)
