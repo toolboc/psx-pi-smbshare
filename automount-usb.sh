@@ -49,5 +49,5 @@ EOF
 # Make script executable
 sudo chmod +x /usr/local/bin/automount
 
-# reboot
-sudo reboot
+# reboot to take effect
+#sudo reboot

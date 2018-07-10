@@ -2,7 +2,7 @@
 SMB sharing for Multiman and Open Playstation Loader on Raspberry Pi
 
 ## How it works
-psx-pi-smbshare is a preconfigured Raspbian based image for Raspberry Pi 1, 2, and  3.  It runs a [Samba](https://en.wikipedia.org/wiki/Samba_(software)) share, a pi-compatible build of [ps3netsrv](https://github.com/dirkvdb/ps3netsrv--), and reconfigures the ethernet port to act as a router.  This gives low-latency, direct access to the Samba service through an ethernet cable connection between a PS2/PS3 and Raspberry Pi.  This configuration is achieved by running [setup.sh](/setup.sh).  A pre-supplied [image](https://github.com/toolboc/psx-pi-smbshare/releases/download/v1.1/psx-smbshare-raspbian-stretch-lite.img) can be applied directly to a Micro-SD card using something like [etcher.io](https://etcher.io/).  The image will expand to use the full available space on the SD card when the OS is first booted.
+psx-pi-smbshare is a preconfigured Raspbian based image for Raspberry Pi 1, 2, and  3.  It runs a [Samba](https://en.wikipedia.org/wiki/Samba_(software)) share, a pi-compatible build of [ps3netsrv](https://github.com/dirkvdb/ps3netsrv--), and reconfigures the ethernet port to act as a router.  This gives low-latency, direct access to the Samba service through an ethernet cable connection between a PS2/PS3 and Raspberry Pi.  This configuration is achieved by running [setup.sh](/setup.sh).  A pre-supplied [image](https://github.com/toolboc/psx-pi-smbshare/releases/download/v1.2/psx-smbshare-raspbian-stretch-lite.img) can be applied directly to a Micro-SD card using something like [etcher.io](https://etcher.io/).  The image will expand to use the full available space on the SD card when the OS is first booted.
 
 An [Xlink Kai](http://www.teamxlink.co.uk/) client is also included and accesscible at http://smbshare:34522/.  This allows for multi-player gaming over extended LAN.  The service is possible to use on a variety of devices including PS2, PS3, Xbox, Xbox 360, and Gamecube.  Just connect the ethernet cable to the device and access the Xlink Kai Service over Wi-Fi with a smart phone, tablet, or computer.
 
@@ -20,7 +20,7 @@ psx-pi-smbshare supports an optional ability to route traffic from the ethernet 
 * Micro-SD Card (8GB+ suggested)
 
 ## Flash the image
-Download the latest [psx-pi-smbshare release image](https://github.com/toolboc/psx-pi-smbshare/releases/download/v1.1/psx-smbshare-raspbian-stretch-lite.img) and burn it to a Micro-SD card with [etcher.io](http://etcher.io)
+Download the latest [psx-pi-smbshare release image](https://github.com/toolboc/psx-pi-smbshare/releases/download/v1.2/psx-smbshare-raspbian-stretch-lite.img) and burn it to a Micro-SD card with [etcher.io](http://etcher.io)
 
 ## Configuring Wireless Network
 If you wish to configure the wireless network on a Raspberry Pi 2 or 3, you need to add a file to **/boot** on the Micro-SD card.  
@@ -47,6 +47,12 @@ With a wireless network configured, you should be able to access the SMB share b
 ![Accessing SMB](/Assets/smbshare.PNG)
 
 The share is preconfigured with a folder structure to accomodate ps3netsrv and Open Playstation Loader expected file paths.
+
+## Accessing USB drive(s) on the SMB Share
+Plug and play auto-sharing of USB storage devices over SMB is supported. 
+
+USB Drives are automounted to the /media directory
+USB Drives are available on the SMB Share @ \\SMBSHARE\share\USB\<Filesystem Label>_<Partition>
 
 ## Configuring for use with MultiMAN on PS3
 
@@ -140,6 +146,31 @@ Don't forget to select "Save Config" when you return to "Settings"
 5. Select an available Halo game from the Xlink Kai portal (there are usually a few running in South America)
 6. Launch Halo 2 and select "System Link"
 7. Join a game and have fun!
+
+## Playing PSP games online with Xlink Kai on PSP
+** Prerequisites **
+* A Wifi capable PSP system
+* 1 external wifi dongle for RPi 2/3 or 2 external wifi dongles for RPi 1
+
+1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
+2. Plug in the external wifi dongle(s)
+3. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
+4. Configure the PSP to connect to "XlinkKai" SSID when the pi has booted using Password `XlinkKai` 
+5. Vist the Xlink Kai service running @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your Xlink Kai account
+6. Select an available PSP game from the Xlink Kai portal 
+7. Start the game on your PSP and look for LAN play settings
+8. Join a game and have fun!
+
+## Using a Second WiFi interface as an Access Point to Xlink Kai 
+** Prerequisites **
+* 1 external wifi dongle for RPi 2/3 or 2 external wifi dongles for RPi 1
+
+1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
+2. Plug in the external wifi dongle(s)
+3. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
+4. Configure the device to connect to "XlinkKai" SSID when the pi has booted using Password `XlinkKai` 
+
+Note: XlinkKai will only work on one network interface (wifi or ethernet) at a time and will lock onto the first interface connected to from a compatible device until reboot
 
 # Credits
 Thx to the following:

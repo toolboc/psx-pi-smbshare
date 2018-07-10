@@ -14,6 +14,8 @@
 # This setup should work fine out the box with OPL and multiman
 # Per default configuration, the smbserver is accessible on 192.168.2.1
 
+#Working directory
+cd /home/pi
 
 # Update packages
 sudo apt-get -y update
@@ -60,14 +62,13 @@ sudo cp ps3netsrv++ /usr/local/bin
 
 # Install wifi-to-eth route settings
 sudo apt-get install -y dnsmasq
-cd ~
-wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/wifi-to-eth-route.sh -O ~/wifi-to-eth-route.sh
-chmod 755 wifi-to-eth-route.sh
+wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/wifi-to-eth-route.sh -O /home/pi/wifi-to-eth-route.sh
+chmod 755 ./wifi-to-eth-route.sh
 
 # Install setup-wifi-access-point settings
 sudo apt-get install -y hostapd bridge-utils
-wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/setup-wifi-access-point.sh -O ~/setup-wifi-access-point.sh
-chmod 755 setup-wifi-access-point.sh
+wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/setup-wifi-access-point.sh -O /home/pi/setup-wifi-access-point.sh
+chmod 755 ./setup-wifi-access-point.sh
 
 # Install Xlink Kai
 wget http://cdn.teamxlink.co.uk/binary/kaiEngine-7.4.31-rev606.headless.ARM.tar.gz
@@ -75,7 +76,7 @@ tar -xzvf kaiEngine-7.4.31-rev606.headless.ARM.tar.gz
 sudo cp kaiEngine-7.4.31/kaiengine /usr/local/bin
 sudo mkdir /root/.xlink
 
-cat <<'EOF' > ~/launchkai.sh
+cat <<'EOF' > /home/pi/launchkai.sh
 while true; do
     /usr/local/bin/kaiengine
     sleep 1
@@ -85,8 +86,8 @@ EOF
 chmod 755 launchkai.sh
 
 # Install USB automount settings
-wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/automount-usb.sh -O ~/automount-usb.sh
-chmod 755 automount-usb.sh
+wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/automount-usb.sh -O /home/pi/automount-usb.sh
+chmod 755 ./automount-usb.sh
 sudo ./automount-usb.sh
 
 mkdir -m 1777 /share/USB
@@ -96,5 +97,9 @@ mkdir -m 1777 /share/USB
 
 # Start services
 sudo /home/pi/wifi-to-eth-route.sh
+sudo /home/pi/setup-wifi-access-point.sh
 ps3netsrv++ -d /share/
 sudo kaiengine
+
+# Not a bad idea to reboot
+sudo reboot
