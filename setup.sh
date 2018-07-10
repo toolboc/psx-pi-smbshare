@@ -61,12 +61,12 @@ sudo cp ps3netsrv++ /usr/local/bin
 # Install wifi-to-eth route settings
 sudo apt-get install -y dnsmasq
 cd ~
-wget https://github.com/toolboc/psx-pi-smbshare/blob/master/wifi-to-eth-route.sh -O ~/wifi-to-eth-route.sh
+wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/wifi-to-eth-route.sh -O ~/wifi-to-eth-route.sh
 chmod 755 wifi-to-eth-route.sh
 
 # Install setup-wifi-access-point settings
 sudo apt-get install -y hostapd bridge-utils
-wget https://github.com/toolboc/psx-pi-smbshare/blob/master/setup-wifi-access-point.sh -O ~/setup-wifi-access-point.sh
+wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/setup-wifi-access-point.sh -O ~/setup-wifi-access-point.sh
 chmod 755 setup-wifi-access-point.sh
 
 # Install Xlink Kai
@@ -85,7 +85,7 @@ EOF
 chmod 755 launchkai.sh
 
 # Install USB automount settings
-wget https://github.com/toolboc/psx-pi-smbshare/blob/master/automount-usb.sh -O ~/automount-usb.sh
+wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/automount-usb.sh -O ~/automount-usb.sh
 chmod 755 automount-usb.sh
 sudo ./automount-usb.sh
 
