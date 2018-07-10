@@ -29,6 +29,7 @@ sudo cat <<'EOF' | sudo tee /etc/samba/smb.conf
 workgroup = WORKGROUP
 usershare allow guests = yes
 map to guest = bad user
+allow insecure wide links = yes
 [share]
 Comment = Pi shared folder
 Path = /share
@@ -39,6 +40,9 @@ create mask = 0777
 directory mask = 0777
 Public = yes
 Guest ok = yes
+force user = pi
+follow symlinks = yes
+wide links = yes
 EOF
 
 #if you wish to create a samba user with password you can use the following:
@@ -84,6 +88,8 @@ chmod 755 launchkai.sh
 wget https://github.com/toolboc/psx-pi-smbshare/blob/master/automount-usb.sh -O ~/automount-usb.sh
 chmod 755 automount-usb.sh
 sudo ./automount-usb.sh
+
+mkdir -m 1777 /share/USB
 
 # Set wifi-to-eth-route, setup-wifi-access-point, ps3netsrv, and Xlink Kai to run on startup
 { echo -e "@reboot sudo bash /home/pi/wifi-to-eth-route.sh && sudo bash /home/pi/setup-wifi-access-point.sh\n@reboot /usr/local/bin/ps3netsrv++ -d /share/\n@reboot sudo bash /home/pi/launchkai.sh"; } | crontab -u pi -

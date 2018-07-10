@@ -38,9 +38,11 @@ FS_LABEL=`lsblk -o name,label | grep ${PART} | awk '{print $2}'`
 
 if [ -z ${FS_LABEL} ]
 then
-    /usr/bin/pmount --umask 000 --noatime -w --sync /dev/${PART} /media/${PART}
+    runuser pi -s /bin/bash -c "/usr/bin/pmount --umask 000 --noatime -w --sync /dev/${PART} /media/${PART}"
+    runuser pi -s /bin/bash -c "ln -s /media/${PART} /share/USB"
 else
-    /usr/bin/pmount --umask 000 --noatime -w --sync /dev/${PART} /media/${FS_LABEL}_${PART}
+    runuser pi -s /bin/bash -c "/usr/bin/pmount --umask 000 --noatime -w --sync /dev/${PART} /media/${FS_LABEL}_${PART}"
+    runuser pi -s /bin/bash -c "ln -s /media/${FS_LABEL}_${PART} /share/USB"
 fi
 EOF
 
