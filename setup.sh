@@ -57,8 +57,13 @@ sudo cp ps3netsrv++ /usr/local/bin
 # Install wifi-to-eth route settings
 sudo apt-get install -y dnsmasq
 cd ~
-wget https://raw.githubusercontent.com/arpitjindal97/raspbian-recipes/master/wifi-to-eth-route.sh -O ~/wifi-to-eth-route.sh
+wget https://github.com/toolboc/psx-pi-smbshare/blob/master/wifi-to-eth-route.sh -O ~/wifi-to-eth-route.sh
 chmod 755 wifi-to-eth-route.sh
+
+# Install setup-wifi-access-point settings
+sudo apt-get install -y hostapd bridge-utils
+wget https://github.com/toolboc/psx-pi-smbshare/blob/master/setup-wifi-access-point.sh -O ~/setup-wifi-access-point.sh
+chmod 755 setup-wifi-access-point.sh
 
 # Install Xlink Kai
 wget http://cdn.teamxlink.co.uk/binary/kaiEngine-7.4.31-rev606.headless.ARM.tar.gz
@@ -75,9 +80,13 @@ EOF
 
 chmod 755 launchkai.sh
 
+# Install USB automount settings
+wget https://github.com/toolboc/psx-pi-smbshare/blob/master/automount-usb.sh -O ~/automount-usb.sh
+chmod 755 automount-usb.sh
+sudo ./automount-usb.sh
 
-# Set wifi-to-eth-route, ps3netsrv, and Xlink Kai to run on startup
-{ echo -e "@reboot sudo bash /home/pi/wifi-to-eth-route.sh\n@reboot /usr/local/bin/ps3netsrv++ -d /share/\n@reboot sudo bash /home/pi/launchkai.sh"; } | crontab -u pi -
+# Set wifi-to-eth-route, setup-wifi-access-point, ps3netsrv, and Xlink Kai to run on startup
+{ echo -e "@reboot sudo bash /home/pi/wifi-to-eth-route.sh && sudo bash /home/pi/setup-wifi-access-point.sh\n@reboot /usr/local/bin/ps3netsrv++ -d /share/\n@reboot sudo bash /home/pi/launchkai.sh"; } | crontab -u pi -
 
 # Start services
 sudo /home/pi/wifi-to-eth-route.sh
