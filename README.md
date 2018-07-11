@@ -1,17 +1,17 @@
 # psx-pi-smbshare
-SMB sharing for Multiman and Open Playstation Loader on Raspberry Pi
+psx-pi-smbshare began with the intent of allowing SMB sharing to Multiman and Open Playstation Loader from a Raspberry Pi.  It has evolved into a Pi-based swiss army knife for enhancing classic game consoles.  
 
 ## How it works
 psx-pi-smbshare is a preconfigured Raspbian based image for Raspberry Pi 1, 2, and  3.  It runs a [Samba](https://en.wikipedia.org/wiki/Samba_(software)) share, a pi-compatible build of [ps3netsrv](https://github.com/dirkvdb/ps3netsrv--), and reconfigures the ethernet port to act as a router.  This gives low-latency, direct access to the Samba service through an ethernet cable connection between a PS2/PS3 and Raspberry Pi.  This configuration is achieved by running [setup.sh](/setup.sh).  A pre-supplied [image](https://github.com/toolboc/psx-pi-smbshare/releases/download/v1.2/psx-smbshare-raspbian-stretch-lite.img) can be applied directly to a Micro-SD card using something like [etcher.io](https://etcher.io/).  The image will expand to use the full available space on the SD card when the OS is first booted.
 
-An [Xlink Kai](http://www.teamxlink.co.uk/) client is also included and accessible at http://smbshare:34522/.  This allows for multi-player gaming over extended LAN.  The service is possible to use on a variety of devices including PS2, PS3, Xbox, Xbox 360, and Gamecube.  Just connect the ethernet cable to the device and access the Xlink Kai Service over Wi-Fi with a smart phone, tablet, or computer.
+An [Xlink Kai](http://www.teamxlink.co.uk/) client is also included and accessible on the device at http://smbshare:34522/.  This allows for multi-player gaming over extended LAN.  The service is possible to use on a variety of devices including PS2, PS3, Xbox, Xbox 360, and Gamecube.  Just connect an ethernet cable to your game console and access the Xlink Kai Service over Wi-Fi with a smart phone, tablet, or computer.
 
 ## What you can do with it
 psx-pi-smbshare works out of the box on PS3 with [MultiMAN](http://www.psx-place.com/threads/update2-multiman-v-04-81-00-01-02-base-update-stealth-for-cex-dex-updates-by-deank.12145/).  This functionality allows you to stream and backup up various games and media to the Samba share service running on the Raspberry Pi.
 
 psx-pi-smbshare also works out of the box on PS2 with [Open Playstation Loader](https://github.com/ifcaro/Open-PS2-Loader) and supports streaming of PS2 backups located on the Samba share service. It can also work with [POPStarter for SMB](https://bitbucket.org/ShaolinAssassin/popstarter-documentation-stuff/wiki/smb-mode) to allow streaming of PS1 games from Open Playstation Loader.
 
-psx-pi-smbshare supports an optional ability to route traffic from the ethernet port through a wireless network connection.  When this is configured, the XLink Kai Service can be used on your device.  Xlink Kai will probably work on any device that can access the service via direct ethernet port connection.  This includes Xbox, Gamecube, and PS2.  There is also support for Ad-Hoc multiplayer on PSP using XLink Kai.  
+psx-pi-smbshare supports an ability to route traffic from the ethernet port through a wireless network connection to the outside world.  With this configuration, the XLink Kai Service can be used on pretty much any device with an ethernet port.  This includes Xbox, Xbox 360, PS2, PS3, and Gamecube.  There is also support for Ad-Hoc multiplayer on PSP using XLink Kai.  
 
 # Quickstart
 
