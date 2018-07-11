@@ -11,7 +11,7 @@ psx-pi-smbshare works out of the box on PS3 with [MultiMAN](http://www.psx-place
 
 psx-pi-smbshare also works out of the box on PS2 with [Open Playstation Loader](https://github.com/ifcaro/Open-PS2-Loader) and supports streaming of PS2 backups located on the Samba share service. It can also work with [POPStarter for SMB](https://bitbucket.org/ShaolinAssassin/popstarter-documentation-stuff/wiki/smb-mode) to allow streaming of PS1 games from Open Playstation Loader.
 
-psx-pi-smbshare supports an optional ability to route traffic from the ethernet port through a wireless network connection.  When this is configured, the XLink Kai Service can be used on your device.  Xlink Kai will probably work on any device that can access the service via direct ethernet port connection.  This includes Xbox, Gamecube, and PS2.
+psx-pi-smbshare supports an optional ability to route traffic from the ethernet port through a wireless network connection.  When this is configured, the XLink Kai Service can be used on your device.  Xlink Kai will probably work on any device that can access the service via direct ethernet port connection.  This includes Xbox, Gamecube, and PS2.  There is also support for Ad-Hoc multiplayer on PSP using XLink Kai.  
 
 # Quickstart
 
@@ -158,6 +158,62 @@ Don't forget to select "Save Config" when you return to "Settings"
 4. Configure the device to connect to "XlinkKai" SSID when the pi has booted using Password `XlinkKai` 
 
 Note: XlinkKai will only work on one network interface (wifi or ethernet) at a time and will lock onto the first interface connected to from a compatible device until reboot
+
+## Playing PSP games online with Xlink Kai on PSP
+
+*tested with an [Edimax-EW-7811Un](https://www.amazon.com/Edimax-EW-7811Un-150Mbps-Raspberry-Supports/dp/B003MTTJOY) wifi dongle*
+
+** Prerequisites **
+* A wifi capable PSP
+* 1 external wifi dongle for RPi 2/3 or 2 external wifi dongles for RPi 1
+* A Multiplayer game which supports Ad-Hoc 
+* An Xlink Kai account from http://www.teamxlink.co.uk/
+
+1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
+2. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
+3. SSH to you psx-pi-smbshare instance using the default username `pi` and default password `raspberry`
+4. Ensure that your PSP is set to Automatic in Network Settings under Ad Hoc Mode
+5. Run the following commands to disable the hostapd access point and enable Ad-Hoc Wifi:
+        
+        sudo service hostapd stop
+        sudo iw wlan1 set type ibss
+
+7. Start an Ad-Hoc multiplayer session from a game on the PSP
+6. Run the follwoing command 
+    
+        sudo iw wlan1 scan | grep PSP_ -B 5
+
+    You will receive an output similar to:
+
+        freq: 2462
+        beacon interval: 100 TUs
+        capability: IBSS ShortPreamble (0x0022)
+        signal: -42.00 dBm
+        last seen: 0 ms ago
+        SSID: PSP_S000000001_L_GameShar
+
+    Take note of the frequency and SSID
+7. Using the information in the previous step, execute the following while the multiplayer session is waiting:
+
+        sudo iw wlan1 ibss join <SSID> <frequency> 
+
+    Ex: sudo iw wlan1 ibss join PSP_S000000001_L_GameShar 2462
+
+    If you receive "Operation not supported (-95)" then your wifi adapter may not be compatible
+
+    Once you know this command, you can re-use the following script at any time to enable PSP Ad-Hoc mode:
+        
+        sudo service hostapd stop
+        sudo iw wlan1 set type ibss
+        sudo iw wlan1 ibss join <SSID> <frequency>
+
+    Note: You must run this script after starting an Ad-Hoc multiplayer session on the PSP
+
+8. Exit the Ad-Hoc multiplayer session and start a new one
+9. Vist the Xlink Kai service running @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your Xlink Kai account
+10. Select "Metrics" and scroll down to "Found Consoles" and you should see your PSP device
+11. Select an available PSP game from the Xlink Kai portal 
+12. Join a game and have fun!
 
 # Credits
 Thx to the following:
