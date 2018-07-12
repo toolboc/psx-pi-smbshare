@@ -58,7 +58,7 @@ cd ps3netsrv--
 git submodule update --init
 make CXX=g++
 sudo cp ps3netsrv++ /usr/local/bin
-
+cd /home/pi
 
 # Install wifi-to-eth route settings
 sudo apt-get install -y dnsmasq
