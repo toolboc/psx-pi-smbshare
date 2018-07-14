@@ -55,6 +55,12 @@ Plug and play auto-sharing of USB storage devices over SMB is supported:
 
 * USB Drives are available on the SMB Share @ `\\SMBSHARE\share\USB\<Filesystem Label>_<Partition>`
 
+## Forwarding Active FTP session to a connected device
+Assuming your console / device has and ip of 192.168.2.2, you may run the following script to forward an Active FTP session:
+
+        sudo iptables -t nat -A PREROUTING -p tcp --dport 21 -j DNAT --to-destination 192.168.2.2:21
+        sudo modprobe ip_nat_ftp ports=21
+
 ## Configuring for use with MultiMAN on PS3
 
 ** Prequisites **
