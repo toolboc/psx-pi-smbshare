@@ -149,10 +149,30 @@ Don't forget to select "Save Config" when you return to "Settings"
 1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
 2. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
 3. Plug the pi into the Xbox ethernet port and verify that you are able to obtain an ip automatically in Network Settings
-4. Vist the Xlink Kai service running @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your Xlink Kai account
+4. Vist the Xlink Kai service running on the pi @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your Xlink Kai account
 5. Select an available Halo game from the Xlink Kai portal (there are usually a few running in South America)
 6. Launch Halo 2 and select "System Link"
 7. Join a game and have fun!
+
+## Playing SOCOM 2 online with Xlink Kai on PS2
+
+** Prerequisites **
+* A Fat PS2 with Network Adapter or Slim PS2
+* A copy of SOCOM 2 for PS2
+* An Xlink Kai account from http://www.teamxlink.co.uk/
+
+1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
+2. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
+3. Plug the pi into the PS2 ethernet port
+4. The following setup needs to be performed one time:  Boot your PS2 up with SOCOM 2 and select "Online" at the title screen. Once you hit the first blue screen hit edit network configuration to be sent to the network setup. Now delete any old network settings and create a new one. Using Automatic settings is fine but you may wish to set the following manual settings if you have issues:
+
+        Console IP: 192.168.2.2
+        Subnet Mask: 255.255.255.0
+        Router IP/Gateway: 192.168.2.1
+5. Vist the Xlink Kai service running on the pi @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your Xlink Kai account
+6. Select an available SOCOM 2 game from the Xlink Kai portal (there is usually one running at all times)
+7. Head back to the SOCOM 2 title screen and select "LAN"
+8. Join a game and have fun!
 
 ## Using a Second WiFi interface as an Access Point to Xlink Kai 
 ** Prerequisites **
