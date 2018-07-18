@@ -53,7 +53,9 @@ Plug and play auto-sharing of USB storage devices over SMB is supported:
 
 * USB Drives are automounted to the /media directory
 
-* USB Drives are available on the SMB Share @ `\\SMBSHARE\share\USB\<Filesystem Label>_<Partition>`
+* USB Drives are available on the SMB Share @ `\\SMBSHARE\share\USB\<Filesystem Label>_<Partition>` and `\\SMBSHARE\<Filesystem Label>_<Partition>` 
+    
+    (if no Filesystem Label is present then only the Partition value (sda1,sdb1,etc.) is used)
 
 ## Forwarding Active FTP session to a connected device
 Assuming your console / device has and ip of 192.168.2.2, you may run the following script to forward an Active FTP session:
