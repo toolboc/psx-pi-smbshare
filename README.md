@@ -112,6 +112,8 @@ Ensure that the following options are set:
             Share = share
             Password = <not set>
 
+![PS2 OPL Settings](/Assets/PS2-OPL-settings.png)
+
 Don't forget to select "Save Config" when you return to "Settings"
 
 3. Reconnect or restart Open Playstation Loader
