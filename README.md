@@ -2,7 +2,7 @@
 psx-pi-smbshare began with the intent of allowing SMB sharing to Multiman and Open Playstation Loader from a Raspberry Pi.  It has evolved into a Pi-based swiss army knife for enhancing classic game consoles.  
 
 ## How it works
-psx-pi-smbshare is a preconfigured Raspbian based image for Raspberry Pi 1, 2, and  3.  It runs a [Samba](https://en.wikipedia.org/wiki/Samba_(software)) share, a pi-compatible build of [ps3netsrv](https://github.com/dirkvdb/ps3netsrv--), and reconfigures the ethernet port to act as a router.  This gives low-latency, direct access to the Samba service through an ethernet cable connection between a PS2/PS3 and Raspberry Pi.  This configuration is achieved by running [setup.sh](/setup.sh).  A pre-supplied [image](https://github.com/toolboc/psx-pi-smbshare/releases/download/v1.2/psx-smbshare-raspbian-stretch-lite.img) can be applied directly to a Micro-SD card using something like [etcher.io](https://etcher.io/).  The image will expand to use the full available space on the SD card when the OS is first booted.
+psx-pi-smbshare is a preconfigured Raspbian based image for Raspberry Pi 1, 2, and  3.  It runs a [Samba](https://en.wikipedia.org/wiki/Samba_(software)) share, a pi-compatible build of [ps3netsrv](https://github.com/dirkvdb/ps3netsrv--), and reconfigures the ethernet port to act as a router.  This gives low-latency, direct access to the Samba service through an ethernet cable connection between a PS2/PS3 and Raspberry Pi.  This configuration is achieved by running [setup.sh](/setup.sh).  A pre-supplied [image](https://github.com/toolboc/psx-pi-smbshare/releases/download/v1.3/psx-smbshare-raspbian-stretch-lite.img) can be applied directly to a Micro-SD card using something like [etcher.io](https://etcher.io/).  The image will expand to use the full available space on the SD card when the OS is first booted.
 
 An [Xlink Kai](http://www.teamxlink.co.uk/) client is also included and accessible on the device at http://smbshare:34522/.  This allows for multi-player gaming over extended LAN.  The service is possible to use on a variety of devices including PS2, PS3, Xbox, Xbox 360, and Gamecube.  Just connect an ethernet cable to your game console and access the Xlink Kai Service over Wi-Fi with a smart phone, tablet, or computer.
 
@@ -20,7 +20,7 @@ psx-pi-smbshare supports an ability to route traffic from the ethernet port thro
 * Micro-SD Card (8GB+ suggested)
 
 ## Flash the image
-Download the latest [psx-pi-smbshare release image](https://github.com/toolboc/psx-pi-smbshare/releases/download/v1.2/psx-smbshare-raspbian-stretch-lite.img) and burn it to a Micro-SD card with [etcher.io](http://etcher.io)
+Download the latest [psx-pi-smbshare release image](https://github.com/toolboc/psx-pi-smbshare/releases/download/v1.3/psx-smbshare-raspbian-stretch-lite.img) and burn it to a Micro-SD card with [etcher.io](http://etcher.io)
 
 ## Configuring Wireless Network
 If you wish to configure the wireless network on a Raspberry Pi 2 or 3, you need to add a file to **/boot** on the Micro-SD card.  
@@ -58,7 +58,7 @@ Plug and play auto-sharing of USB storage devices over SMB is supported:
     (if no Filesystem Label is present then only the Partition value (sda1,sdb1,etc.) is used)
 
 ## Forwarding Active FTP session to a connected device
-Assuming your console / device has and ip of 192.168.2.2, you may run the following script to forward an Active FTP session:
+Assuming your console / device has an ip of 192.168.2.2, you may run the following script to forward an Active FTP session:
 
         sudo iptables -t nat -A PREROUTING -p tcp --dport 21 -j DNAT --to-destination 192.168.2.2:21
         sudo modprobe ip_nat_ftp ports=21
@@ -112,7 +112,7 @@ Ensure that the following options are set:
             Share = share
             Password = <not set>
 
-![PS2 OPL Settings](/Assets/PS2-OPL-settings.png)
+    ![PS2 OPL Settings](/Assets/PS2-OPL-settings.png)
 
 Don't forget to select "Save Config" when you return to "Settings"
 
