@@ -61,7 +61,7 @@ while true; do
 done
 EOF
 
-chmod 755 launchkai.sh
+chmod 755 /home/pi/launchkai.sh
 
 # Install USB automount settings
 wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/automount-usb.sh -O /home/pi/automount-usb.sh
