@@ -14,6 +14,7 @@ sudo apt-get install -y pmount
 # Create udev rule
 sudo cat <<'EOF' | sudo tee /etc/udev/rules.d/usbstick.rules
 ACTION=="add", KERNEL=="sd[a-z][0-9]", TAG+="systemd", ENV{SYSTEMD_WANTS}="usbstick-handler@%k"
+ENV{DEVTYPE}=="usb_device", ACTION=="remove", SUBSYSTEM=="usb", RUN+="/bin/systemctl --no-block start usbstick-cleanup@%k.service"
 EOF
 
 # Configure systemd
@@ -26,12 +27,22 @@ After=dev-%i.device
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/local/bin/automount %I
+ExecStart=/usr/local/bin/automount.sh %I
 ExecStop=/usr/bin/pumount /dev/%I
 EOF
 
+sudo cat <<'EOF' | sudo tee /lib/systemd/system/usbstick-cleanup@.service
+[Unit]
+Description=Cleanup USB sticks
+BindsTo=dev-%i.device
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/samba-init.sh
+EOF
+
 # Configure script to run when an automount event is triggered
-sudo cat <<'EOF' | sudo tee /usr/local/bin/automount
+sudo cat <<'EOF' | sudo tee /usr/local/bin/automount.sh
 #!/bin/bash
 
 PART=$1
@@ -42,17 +53,9 @@ then
     exit
 fi
 
-if [ -z ${FS_LABEL} ]
-then
-    runuser pi -s /bin/bash -c "/usr/bin/pmount --umask 000 --noatime -w --sync /dev/${PART} /media/${PART}"
-    runuser pi -s /bin/bash -c "ln -s /media/${PART} /share/USB"
-    shareName=${PART}
-else 
-    runuser pi -s /bin/bash -c "/usr/bin/pmount --umask 000 --noatime -w --sync /dev/${PART} /media/${FS_LABEL}_${PART}"
-    runuser pi -s /bin/bash -c "ln -s /media/${FS_LABEL}_${PART} /share/USB"
-    shareName=${FS_LABEL}_${PART}
-fi
+runuser pi -s /bin/bash -c "/usr/bin/pmount --umask 000 --noatime -w --sync /dev/${PART} /media/${PART}"
 
+#create a new smb share for the mounted drive
 cat <<EOF | sudo tee /etc/samba/smb.conf
 [global]
 workgroup = WORKGROUP
@@ -61,20 +64,7 @@ map to guest = bad user
 allow insecure wide links = yes
 [share]
 Comment = Pi default shared folder
-Path = /share
-Browseable = yes
-Writeable = Yes
-only guest = no
-create mask = 0777
-directory mask = 0777
-Public = yes
-Guest ok = yes
-force user = pi
-follow symlinks = yes
-wide links = yes
-[$shareName]
-Comment = USB shared folder
-Path = /media/$shareName
+Path = /media/$PART
 Browseable = yes
 Writeable = Yes
 only guest = no
@@ -88,7 +78,7 @@ wide links = yes
 EOF
 
 # Make script executable
-sudo chmod +x /usr/local/bin/automount
+sudo chmod +x /usr/local/bin/automount.sh
 
-# reboot to take effect
-#sudo reboot
+# Reload udev rules and triggers
+sudo udevadm control --reload-rules && udevadm trigger
