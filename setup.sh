@@ -25,10 +25,6 @@ chmod 755 /home/pi/samba-init.sh
 sudo cp /home/pi/samba-init.sh /usr/local/bin
 sudo mkdir -m 1777 /share
 
-#if you wish to create a samba user with password you can use the following:
-#sudo smbpasswd -a pi
-sudo /etc/init.d/samba restart
-
 # Install ps3netsrv
 sudo apt-get install -y git gcc
 git clone https://github.com/dirkvdb/ps3netsrv--.git
@@ -68,10 +64,11 @@ wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/automount-
 chmod 755 /home/pi/automount-usb.sh
 sudo /home/pi/automount-usb.sh
 
-# Set wifi-to-eth-route, setup-wifi-access-point, ps3netsrv, and Xlink Kai to run on startup
+# Set samba-init, wifi-to-eth-route, setup-wifi-access-point, ps3netsrv, and Xlink Kai to run on startup
 { echo -e "@reboot sudo bash /usr/local/bin/samba-init.sh\n@reboot sudo bash /home/pi/wifi-to-eth-route.sh && sudo bash /home/pi/setup-wifi-access-point.sh\n@reboot /usr/local/bin/ps3netsrv++ -d /share/\n@reboot sudo bash /home/pi/launchkai.sh"; } | crontab -u pi -
 
 # Start services
+sudo /usr/local/bin/samba-init.sh
 sudo /home/pi/wifi-to-eth-route.sh
 sudo /home/pi/setup-wifi-access-point.sh
 ps3netsrv++ -d /share/
