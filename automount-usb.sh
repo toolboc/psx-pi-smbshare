@@ -56,7 +56,7 @@ fi
 runuser pi -s /bin/bash -c "/usr/bin/pmount --umask 000 --noatime -w --sync /dev/${PART} /media/${PART}"
 
 #create a new smb share for the mounted drive
-cat <<EOF | sudo tee /etc/samba/smb.conf
+cat <<EOS | sudo tee /etc/samba/smb.conf
 [global]
 workgroup = WORKGROUP
 usershare allow guests = yes
@@ -75,6 +75,11 @@ Guest ok = yes
 force user = pi
 follow symlinks = yes
 wide links = yes
+EOS
+
+#if you wish to create a samba user with password you can use the following:
+#sudo smbpasswd -a pi
+sudo /etc/init.d/samba restart
 EOF
 
 # Make script executable
