@@ -38,7 +38,7 @@ BindsTo=dev-%i.device
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/samba-init.sh
+ExecStart=/usr/local/bin/samba-init.sh && /usr/bin/pumount /dev/%I
 EOF
 
 # Configure script to run when an automount event is triggered
