@@ -15,7 +15,7 @@ psx-pi-smbshare supports an ability to route traffic from the ethernet port thro
 
 # Quickstart
 
-** Prequisites **
+*Prerequisites*
 * Raspberry Pi 1, 2, or 3
 * Micro-SD Card (8GB+ suggested)
 
@@ -65,9 +65,10 @@ Assuming your console / device has an ip of 192.168.2.2, you may run the followi
 
 ## Configuring for use with MultiMAN on PS3
 
-** Prequisites **
+*Prerequisites*
 * Playstation 3 running a [recent release of MultiMAN](http://store.brewology.com/ahomebrew.php?brewid=24)
 
+*Steps*
 1. Connect the pi ethernet port into the ethernet port of the PS3 and power the pi using the PS3 usb or an external power supply 
 2. In the PS3 XMB select "Settings" => "Network Settings" => "Internet Connection Settings" and configure to connect using the ethernet connection as follows:
     
@@ -91,9 +92,10 @@ PS2 backups must be loaded from the HDD but can be copied directly to the SMB se
 
 ## Configuring for use with Open Playstation Loader
 
-** Prerequisites **
+*Prerequisites*
 * Playstation 2 fat or slim running a [recent release of Open Playstation Loader](http://www.ps2-home.com/forum/viewtopic.php?p=29251#p29251) 
 
+*Steps*
 1. Connect the pi ethernet port into the ethernet port of the PS2 and power the pi using the PS2 usb or an external power supply 
 2. Boot Open Playstation Loader and select "Settings" => "Network Config".  
 Ensure that the following options are set:
@@ -121,9 +123,10 @@ Don't forget to select "Save Config" when you return to "Settings"
 
 ## Configuring for use with POPSLoader on Open Playstation Loader
 
-** Prerequisites **
+*Prerequisites*
 * Ensure that you have successfully followed the steps above for "Configuring for use with Open Playstation Loader"
 
+*Steps*
 1. Download the [ps2 network modules](https://bitbucket.org/ShaolinAssassin/popstarter-documentation-stuff/downloads/network_modules.7z) 
 2. Extract the POPSTARTER folder 
 3. Modify IPCONFIG.DAT to:
@@ -145,11 +148,12 @@ Don't forget to select "Save Config" when you return to "Settings"
 
 ## Playing Halo 2 online with Xlink Kai on Xbox
 
-** Prerequisites **
+*Prerequisites*
 * An original Xbox or Xbox 360 with backwards compatibility support
 * A copy of Halo 2
 * An Xlink Kai account from http://www.teamxlink.co.uk/
 
+*Steps*
 1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
 2. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
 3. Plug the pi into the Xbox ethernet port and verify that you are able to obtain an ip automatically in Network Settings
@@ -160,11 +164,12 @@ Don't forget to select "Save Config" when you return to "Settings"
 
 ## Playing SOCOM 2 online with Xlink Kai on PS2
 
-** Prerequisites **
+*Prerequisites*
 * A Fat PS2 with Network Adapter or Slim PS2
 * A copy of SOCOM 2 for PS2
 * An Xlink Kai account from http://www.teamxlink.co.uk/
 
+*Steps*
 1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
 2. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
 3. Plug the pi into the PS2 ethernet port
@@ -179,9 +184,10 @@ Don't forget to select "Save Config" when you return to "Settings"
 8. Join a game and have fun!
 
 ## Using a Second WiFi interface as an Access Point to Xlink Kai 
-** Prerequisites **
+*Prerequisites*
 * 1 external wifi dongle for RPi 2/3 or 2 external wifi dongles for RPi 1
 
+*Steps*
 1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
 2. Plug in the external wifi dongle(s)
 3. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
@@ -191,14 +197,13 @@ Note: XlinkKai will only work on one network interface (wifi or ethernet) at a t
 
 ## Playing PSP games online with Xlink Kai on PSP
 
-*tested with an [Edimax-EW-7811Un](https://www.amazon.com/Edimax-EW-7811Un-150Mbps-Raspberry-Supports/dp/B003MTTJOY) wifi dongle*
-
-** Prerequisites **
+*Prerequisites*
 * A wifi capable PSP
-* 1 external wifi dongle for RPi 2/3 or 2 external wifi dongles for RPi 1
+* 1 external wifi dongle for RPi 2/3 or 2 external wifi dongles for RPi 1 (*tested with an [Edimax-EW-7811Un](https://www.amazon.com/Edimax-EW-7811Un-150Mbps-Raspberry-Supports/dp/B003MTTJOY) wifi dongle*)
 * A Multiplayer game which supports Ad-Hoc 
 * An Xlink Kai account from http://www.teamxlink.co.uk/
 
+*Steps*
 1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
 2. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
 3. SSH to you psx-pi-smbshare instance using the default username `pi` and default password `raspberry`
