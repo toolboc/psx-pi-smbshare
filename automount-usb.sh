@@ -4,12 +4,25 @@
 # psx-pi-smbshare automout-usb script
 #
 # *What it does*
-# This script configures raspbian to automount any usb storage to /media/<PartitionLabel>_<sdxy>
+# This script configures raspbian to automount any usb storage to /media/sd<xy>
 # This allows for use of USB & HDD in addition to Micro-SD
-# It also creates a new Samba configuration which exposes the last attached USB drive @ //SMBSHARE/${FS_LABEL}_${PART} or //SMBSHARE/${PART} if no FS_LABEL is present
+# It also creates a new Samba configuration which exposes the last attached USB drive @ //SMBSHARE/<PARTITION>
 
-# Install pmount
-sudo apt-get install -y pmount
+# Update packages
+sudo apt-get update
+
+# Install NTFS Read/Write Support
+sudo apt-get install -y ntfs-3g 
+
+# Install pmount with ExFAT support
+sudo apt-get install -y exfat-fuse exfat-utils autoconf intltool libtool libtool-bin libglib2.0-dev libblkid-dev
+cd ~
+git clone https://github.com/stigi/pmount-exfat.git
+cd pmount-exfat
+./autogen.sh
+make
+sudo make install prefix=usr
+sudo sed -i 's/not_physically_logged_allow = no/not_physically_logged_allow = yes/' /etc/pmount.conf
 
 # Create udev rule
 sudo cat <<'EOF' | sudo tee /etc/udev/rules.d/usbstick.rules
