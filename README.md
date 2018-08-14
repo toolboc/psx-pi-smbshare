@@ -25,11 +25,12 @@ Download the latest [psx-pi-smbshare release image](https://github.com/toolboc/p
 ## Configuring Wireless Network
 If you wish to configure the wireless network on a Raspberry Pi 2 or 3, you need to add a file to **/boot** on the Micro-SD card.  
 
-Create a file on **/boot** named **wpa_supplicant.conf** and supply the following:
+Create a file on **/boot** named **wpa_supplicant.conf** and supply the following (change country to a [valid 2 letter code](https://en.wikipedia.org/wiki/ISO_3166-1)):
 
     ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
     update_config=1
-
+    country=US
+    
     network={
             ssid="<SSID>"
             psk="<PASSWORD>"
