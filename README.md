@@ -251,6 +251,9 @@ Note: XlinkKai will only work on one network interface (wifi or ethernet) at a t
 11. Select an available PSP game from the Xlink Kai portal 
 12. Join a game and have fun!
 
+# Demos
+[Launching PS2 Backups with OPL](https://www.youtube.com/watch?v=FJEdWW6YhJo&feature=youtu.be)
+
 # Credits
 Thx to the following:
 * Jay-Jay for [OPL Daily Builds](https://github.com/Jay-Jay-OPL/OPL-Daily-Builds) 
@@ -258,3 +261,4 @@ Thx to the following:
 * dirkvdb for [ps3netsrv--](https://github.com/dirkvdb/ps3netsrv--)
 * arpitjindal97 for [wifi-to-eth-route.sh](https://github.com/arpitjindal97/raspbian-recipes/blob/master/wifi-to-eth-route.sh)
 * Team Xlink for [Xlink Kai](http://www.teamxlink.co.uk/)
+* Pul Gasari for [Testing streaming games from Raspberry Pi to PS2 using psx-pi-smbshare](https://www.youtube.com/watch?v=FJEdWW6YhJo&feature=youtu.be)
