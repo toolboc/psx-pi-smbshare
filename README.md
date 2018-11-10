@@ -252,7 +252,8 @@ Note: XlinkKai will only work on one network interface (wifi or ethernet) at a t
 12. Join a game and have fun!
 
 # Demos
-[Launching PS2 Backups with OPL](https://www.youtube.com/watch?v=FJEdWW6YhJo&feature=youtu.be)
+* [Launching PS2 Backups with OPL](https://www.youtube.com/watch?v=FJEdWW6YhJo&feature=youtu.be)
+* [Launching PS1 Backups with POPSLoader](https://youtu.be/qCiezaKglMs)
 
 # Credits
 Thx to the following:
