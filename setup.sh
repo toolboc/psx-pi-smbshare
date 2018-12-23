@@ -45,9 +45,9 @@ wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/setup-wifi
 chmod 755 /home/pi/setup-wifi-access-point.sh
 
 # Install Xlink Kai
-wget http://cdn.teamxlink.co.uk/binary/kaiEngine-7.4.31-rev606.headless.ARM.tar.gz
-tar -xzvf kaiEngine-7.4.31-rev606.headless.ARM.tar.gz
-sudo cp kaiEngine-7.4.31/kaiengine /usr/local/bin
+wget https://cdn.teamxlink.co.uk/binary/kaiEngine-7.4.32-rev755.headless.ARM.tar.gz
+tar -xzvf kaiEngine-7.4.32-rev755.headless.ARM.tar.gz
+sudo cp kaiEngine-7.4.32/kaiengine /usr/local/bin
 sudo mkdir /root/.xlink
 
 cat <<'EOF' > /home/pi/launchkai.sh
