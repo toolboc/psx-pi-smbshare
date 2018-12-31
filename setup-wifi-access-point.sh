@@ -26,7 +26,7 @@ wmm_enabled=0
 macaddr_acl=0
 auth_algs=1
 ignore_broadcast_ssid=0
-wpa=3
+wpa=2
 wpa_passphrase=XlinkKai
 wpa_key_mgmt=WPA-PSK
 wpa_pairwise=TKIP
@@ -36,7 +36,7 @@ EOF
 # Configure dhcpcd
 sudo cat <<'EOF' | sudo tee /etc/dhcpcd.conf
 interface wlan1
-static ip_address=192.168.3.1/24
+static ip_address=10.254.0.1/16
 nohook wpa_supplicant
 EOF
 
@@ -45,7 +45,7 @@ sudo cat <<'EOF' | sudo tee -a /etc/dnsmasq.d/custom-dnsmasq.conf
 
 interface=wlan1
 bind-dynamic
-dhcp-range=192.168.3.2,192.168.3.100,12h
+dhcp-range=10.254.0.2,10.254.0.100,12h
 EOF
 
 # Forward additional ports
