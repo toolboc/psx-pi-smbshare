@@ -45,9 +45,9 @@ wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/setup-wifi
 chmod 755 /home/pi/setup-wifi-access-point.sh
 
 # Install Xlink Kai
-wget https://cdn.teamxlink.co.uk/binary/kaiEngine-7.4.32-rev755.headless.ARM.tar.gz
-tar -xzvf kaiEngine-7.4.32-rev755.headless.ARM.tar.gz
-sudo cp kaiEngine-7.4.32/kaiengine_arm /usr/local/bin
+wget https://cdn.teamxlink.co.uk/binary/kaiEngine-7.4.33-rev759.headless.ARM.tar.gz
+tar -xzvf kaiEngine-7.4.33-rev759.headless.ARM.tar.gz
+sudo cp kaiEngine-7.4.33/kaiengine_arm /usr/local/bin
 sudo mkdir /root/.xlink
 
 cat <<'EOF' > /home/pi/launchkai.sh
@@ -72,7 +72,7 @@ sudo /usr/local/bin/samba-init.sh
 sudo /home/pi/wifi-to-eth-route.sh
 sudo /home/pi/setup-wifi-access-point.sh
 ps3netsrv++ -d /share/
-sudo kaiengine
+sudo kaiengine_arm
 
 # Not a bad idea to reboot
 sudo reboot
