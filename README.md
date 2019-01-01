@@ -147,6 +147,23 @@ Don't forget to select "Save Config" when you return to "Settings"
 
     A detailed guide is available @ http://www.ps2-home.com/forum/viewtopic.php?f=64&t=5002
 
+## Playing LAN enabled Nintendo Switch games online with Xlink Kai on Nintendo Switch
+
+*Prerequisites*
+* A Nintendo Switch
+* A LAN compatible Switch game
+* An Xlink Kai account from http://www.teamxlink.co.uk/
+
+*Steps*
+1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
+2. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
+3. Add a second Wi-fi dongle to the pi as described in [Using a second wifi interface as an access point to Xlink Kai](https://github.com/toolboc/psx-pi-smbshare#using-a-second-wifi-interface-as-an-access-point-to-xlink-kai) 
+4. Configure your Switch to connect to the "XlinkKai" access point and set the `DNS Settings` to manual and set the `Primary DNS` to 10.254.0.1 and ensure that `Autoconnect` is set to "on" as described in the [XlinkKai Nintendo Switch Tutorial](https://www.teamxlink.co.uk/forum/viewtopic.php?p=240498).
+4. Vist the Xlink Kai service running on the pi @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your Xlink Kai account
+5. Select an available Switch game from the Xlink Kai portal 
+6. Launch a Switch game and start up LAN mode and create a LAN room (Do not confuse with Local Wireless, many games involve a special keypress combination to enable LAN mode, please research accordingly).
+7. Wait for players to join and have fun!
+
 ## Playing Halo 2 online with Xlink Kai on Xbox
 
 *Prerequisites*
