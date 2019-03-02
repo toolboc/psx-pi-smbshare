@@ -64,8 +64,8 @@ wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/automount-
 chmod 755 /home/pi/automount-usb.sh
 sudo /home/pi/automount-usb.sh
 
-# Set samba-init, wifi-to-eth-route, setup-wifi-access-point, ps3netsrv, and Xlink Kai to run on startup
-{ echo -e "@reboot sudo bash /usr/local/bin/samba-init.sh\n@reboot sudo bash /home/pi/wifi-to-eth-route.sh && sudo bash /home/pi/setup-wifi-access-point.sh\n@reboot /usr/local/bin/ps3netsrv++ -d /share/\n@reboot sudo bash /home/pi/launchkai.sh"; } | crontab -u pi -
+# Set samba-init + ps3netsrv, wifi-to-eth-route, setup-wifi-access-point, and Xlink Kai to run on startup
+{ echo -e "@reboot sudo bash /usr/local/bin/samba-init.sh\n@reboot sudo bash /home/pi/wifi-to-eth-route.sh && sudo bash /home/pi/setup-wifi-access-point.sh\n@reboot sudo bash /home/pi/launchkai.sh"; } | crontab -u pi -
 
 # Start services
 sudo /usr/local/bin/samba-init.sh

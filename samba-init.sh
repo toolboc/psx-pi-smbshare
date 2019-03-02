@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#restart ps3netsrv++
+pkill ps3netsrv++
+/usr/local/bin/ps3netsrv++ -d /share
+
 sudo cat <<'EOF' | sudo tee /etc/samba/smb.conf
 [global]
 workgroup = WORKGROUP
