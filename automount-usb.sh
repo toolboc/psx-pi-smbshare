@@ -12,7 +12,7 @@
 sudo apt-get update
 
 # Install NTFS Read/Write Support
-sudo apt-get install -y ntfs-3g 
+sudo apt-get install -y ntfs-3g
 
 # Install pmount with ExFAT support
 sudo apt-get install -y exfat-fuse exfat-utils autoconf intltool libtool libtool-bin libglib2.0-dev libblkid-dev
@@ -27,7 +27,7 @@ sudo sed -i 's/not_physically_logged_allow = no/not_physically_logged_allow = ye
 # Create udev rule
 sudo cat <<'EOF' | sudo tee /etc/udev/rules.d/usbstick.rules
 ACTION=="add", KERNEL=="sd[a-z][0-9]", TAG+="systemd", ENV{SYSTEMD_WANTS}="usbstick-handler@%k"
-ENV{DEVTYPE}=="usb_device", ACTION=="remove", SUBSYSTEM=="usb", RUN+="/bin/systemctl --no-block start usbstick-cleanup@%k.service"
+ENV{DEVTYPE}=="usb_device", ACTION=="remove", SUBSYSTEM=="usb", RUN+="/bin/systemctl --no-block restart usbstick-cleanup@%k.service"
 EOF
 
 # Configure systemd
@@ -50,8 +50,9 @@ Description=Cleanup USB sticks
 BindsTo=dev-%i.device
 
 [Service]
-Type=simple
-ExecStart=/usr/local/bin/samba-init.sh && /usr/bin/pumount /dev/%I
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/samba-init.sh
 EOF
 
 # Configure script to run when an automount event is triggered
@@ -67,6 +68,9 @@ then
 fi
 
 runuser pi -s /bin/bash -c "/usr/bin/pmount --umask 000 --noatime -w --sync /dev/${PART} /media/${PART}"
+
+pkill ps3netsrv++
+/usr/local/bin/ps3netsrv++ -d /media/$PART
 
 #create a new smb share for the mounted drive
 cat <<EOS | sudo tee /etc/samba/smb.conf
