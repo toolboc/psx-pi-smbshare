@@ -64,6 +64,20 @@ Assuming your console / device has an ip of 192.168.2.2, you may run the followi
         sudo iptables -t nat -A PREROUTING -p tcp --dport 21 -j DNAT --to-destination 192.168.2.2:21
         sudo modprobe ip_nat_ftp ports=21
 
+If you wish to permanently enable FTP forwarding, it is suggested to set a static ip of 192.168.2.2 on your console(s) when used with psx-pi-smbshare and modify "wifi-to-eth-route.sh" in the home directory of the pi to run the commands above by adding them directly before:
+
+`sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward" `
+
+This will ensure that Active FTP sessions are forwarded automatically at startup.
+
+After you enable forwarding of Active FTP sessions to your console, it is suggested to use [Filezilla](https://filezilla-project.org/download.php?type=client) to connect to your console via "File => Site Manager => New Site" and connecting with the following settings:
+
+![Accessing SMB](/Assets/FilezillaSettings.png)
+
+![Accessing SMB](/Assets/FilezillaActiveFTPMode.png)
+
+This configuration will forward all ftp requests made to the host ip of the psx-pi-smbshare device to the internal ip assigned to the connected console.  If using another FTP client, it is very important that it is configured to connect using an Active FTP transfer mode.
+
 ## Configuring for use with MultiMAN on PS3
 
 *Prerequisites*
