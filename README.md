@@ -19,6 +19,8 @@ psx-pi-smbshare supports an ability to route traffic from the ethernet port thro
 * Raspberry Pi 1, 2, or 3
 * Micro-SD Card (8GB+ suggested)
 
+A detailed [video guide](https://www.youtube.com/watch?time_continue=1&v=Ilx5NYoUkNA) is provided by Project Phoenix Media which walks through the processes described below.
+
 ## Flash the image
 Download the latest [psx-pi-smbshare release image](https://github.com/toolboc/psx-pi-smbshare/releases/) and burn it to a Micro-SD card with [etcher.io](http://etcher.io)
 
@@ -282,6 +284,9 @@ Note: XlinkKai will only work on one network interface (wifi or ethernet) at a t
 10. Select "Metrics" and scroll down to "Found Consoles" and you should see your PSP device
 11. Select an available PSP game from the Xlink Kai portal 
 12. Join a game and have fun!
+
+## Playing Mario Kart Double Dash online with Xlink Kai on Gamecube
+See this [article on the NintendoDuo Tumblr page](https://nintendoduo.tumblr.com/post/185437788676/how-to-take-your-gamecube-online-with-a-raspberry) for a detailed guide on "How to Take Your GameCube Online With a Raspberry Pi and psx-pi-smbshare".
 
 # Demos
 * [Launching PS2 Backups with OPL](https://www.youtube.com/watch?v=FJEdWW6YhJo&feature=youtu.be)
