@@ -27,4 +27,4 @@ EOF
 
 #if you wish to create a samba user with password you can use the following:
 #sudo smbpasswd -a pi
-sudo /etc/init.d/samba restart
+sudo /etc/init.d/smbd restart
