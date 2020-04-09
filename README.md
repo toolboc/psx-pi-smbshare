@@ -1,6 +1,15 @@
 # psx-pi-smbshare
 psx-pi-smbshare began with the intent of allowing SMB sharing to Multiman and Open Playstation Loader from a Raspberry Pi.  It has evolved into a Pi-based swiss army knife for enhancing classic game consoles.  
 
+## Upgrading an existing install
+The following commands can be used to upgrade an existing psx-pi-smbshare device.  These instructions can also be used to convert an unsupported device into a psx-pi-smbshare (for example [Raspberry Pi4](https://github.com/toolboc/psx-pi-smbshare/issues/10) and potentially other devices running a debian based OS with an accessible ethernet port).
+```
+cd ~
+wget -O setup.sh https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/setup.sh
+chmod 755 setup.sh
+sudo ./setup.sh
+```
+
 ## How it works
 psx-pi-smbshare is a preconfigured Raspbian based image for Raspberry Pi 1, 2, and  3.  It runs a [Samba](https://en.wikipedia.org/wiki/Samba_(software)) share, a pi-compatible build of [ps3netsrv](https://github.com/dirkvdb/ps3netsrv--), and reconfigures the ethernet port to act as a router.  This gives low-latency, direct access to the Samba service through an ethernet cable connection between a PS2/PS3 and Raspberry Pi.  This configuration is achieved by running [setup.sh](/setup.sh).  A pre-supplied [image](https://github.com/toolboc/psx-pi-smbshare/releases/) can be applied directly to a Micro-SD card using something like [etcher.io](https://etcher.io/).  The image allows you to use the full available space on the SD card after the OS is first booted.
 
