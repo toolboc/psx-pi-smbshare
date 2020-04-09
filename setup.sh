@@ -47,6 +47,7 @@ chmod 755 /home/pi/setup-wifi-access-point.sh
 # Install Xlink Kai
 wget https://cdn.teamxlink.co.uk/binary/kaiEngine-7.4.35-534304363.headless.armhf.tar.gz
 tar -xzvf kaiEngine-7.4.35-534304363.headless.armhf.tar.gz
+sudo rm /usr/local/bin/kaiengine_arm
 sudo cp kaiEngine-7.4.35/kaiengine /usr/local/bin/kaiengine_arm
 sudo mkdir /root/.xlink
 
