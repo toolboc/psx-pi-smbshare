@@ -72,7 +72,7 @@ sudo /usr/local/bin/samba-init.sh
 sudo /home/pi/wifi-to-eth-route.sh
 sudo /home/pi/setup-wifi-access-point.sh
 ps3netsrv++ -d /share/
-sudo kaiengine_arm
+sudo kaiengine
 
 # Not a bad idea to reboot
 sudo reboot
