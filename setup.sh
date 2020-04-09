@@ -26,6 +26,7 @@ sudo cp /home/pi/samba-init.sh /usr/local/bin
 sudo mkdir -m 1777 /share
 
 # Install ps3netsrv
+sudo rm /usr/local/bin/ps3netsrv++
 sudo apt-get install -y git gcc
 git clone https://github.com/dirkvdb/ps3netsrv--.git
 cd ps3netsrv--
