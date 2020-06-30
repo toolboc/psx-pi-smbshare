@@ -1,6 +1,10 @@
 # psx-pi-smbshare
 psx-pi-smbshare began with the intent of allowing SMB sharing to Multiman and Open Playstation Loader from a Raspberry Pi.  It has evolved into a Pi-based swiss army knife for enhancing classic game consoles.  
 
+You can see it in action in this video from [@versatileninja](https://github.com/versatileninja) which walks through the setup process and demonstrates how to use it:
+
+[![Play PS2 Games Over SMB Using Raspberry Pi 3b+ and psx-pi-smbshare (2019)](https://img.youtube.com/vi/Ilx5NYoUkNA/0.jpg)](https://www.youtube.com/watch?v=Ilx5NYoUkNA)
+
 ## Upgrading an existing install
 The following commands can be used to upgrade an existing psx-pi-smbshare device.  These instructions can also be used to convert an unsupported device into a psx-pi-smbshare (for example [Raspberry Pi4](https://github.com/toolboc/psx-pi-smbshare/issues/10) and potentially other devices running a debian based OS with an accessible ethernet port).
 ```
@@ -11,7 +15,7 @@ sudo ./setup.sh
 ```
 
 ## How it works
-psx-pi-smbshare is a preconfigured Raspbian based image for Raspberry Pi 1, 2, and  3.  It runs a [Samba](https://en.wikipedia.org/wiki/Samba_(software)) share, a pi-compatible build of [ps3netsrv](https://github.com/dirkvdb/ps3netsrv--), and reconfigures the ethernet port to act as a router.  This gives low-latency, direct access to the Samba service through an ethernet cable connection between a PS2/PS3 and Raspberry Pi.  This configuration is achieved by running [setup.sh](/setup.sh).  A pre-supplied [image](https://github.com/toolboc/psx-pi-smbshare/releases/) can be applied directly to a Micro-SD card using something like [etcher.io](https://etcher.io/).  The image allows you to use the full available space on the SD card after the OS is first booted.
+psx-pi-smbshare is a preconfigured Raspbian based image for Raspberry Pi 1, 2, 3 and [4](https://www.youtube.com/watch?v=8qaJcbSye-E).  It runs a [Samba](https://en.wikipedia.org/wiki/Samba_(software)) share, a pi-compatible build of [ps3netsrv](https://github.com/dirkvdb/ps3netsrv--), and reconfigures the ethernet port to act as a router.  This gives low-latency, direct access to the Samba service through an ethernet cable connection between a PS2/PS3 and Raspberry Pi.  This configuration is achieved by running [setup.sh](/setup.sh).  A pre-supplied [image](https://github.com/toolboc/psx-pi-smbshare/releases/) can be applied directly to a Micro-SD card using something like [etcher.io](https://etcher.io/).  The image allows you to use the full available space on the SD card after the OS is first booted.
 
 An [Xlink Kai](http://www.teamxlink.co.uk/) client is also included and accessible on the device at http://smbshare:34522/.  This allows for multi-player gaming over extended LAN.  The service is possible to use on a variety of devices including PS2, PS3, PS4, Xbox, Xbox 360, Xbox One, Gamecube, Switch, Wii, Wii U (and PSP).  Just connect an ethernet cable to your game console and access the Xlink Kai Service over Wi-Fi with a smart phone, tablet, or computer.
 
@@ -241,6 +245,10 @@ Note: XlinkKai will only work on one network interface (wifi or ethernet) at a t
 
 ## Playing PSP games online with Xlink Kai on PSP
 
+### Video Demonstration
+
+[![Halo 2 XLink Kai Raspberry Pi Wireless Gameplay](https://img.youtube.com/vi/3m1nWdHbVOI/0.jpg)](https://www.youtube.com/watch?v=3m1nWdHbVOI)
+
 *Prerequisites*
 * A wifi capable PSP
 * 1 external wifi dongle for RPi 2/3 or 2 external wifi dongles for RPi 1 (*tested with an [Edimax-EW-7811Un](https://www.amazon.com/Edimax-EW-7811Un-150Mbps-Raspberry-Supports/dp/B003MTTJOY) wifi dongle*)
@@ -295,6 +303,11 @@ Note: XlinkKai will only work on one network interface (wifi or ethernet) at a t
 12. Join a game and have fun!
 
 ## Playing Mario Kart Double Dash online with Xlink Kai on Gamecube
+
+### Video Demonstration
+
+[![GameCube online with psx-pi-smbshare](https://img.youtube.com/vi/pa-AM05EwQ4/0.jpg)](https://www.youtube.com/watch?v=pa-AM05EwQ4)
+
 See this [article on the NintendoDuo Tumblr page](https://nintendoduo.tumblr.com/post/185437788676/how-to-take-your-gamecube-online-with-a-raspberry) for a detailed guide on "How to Take Your GameCube Online With a Raspberry Pi and psx-pi-smbshare".
 
 # Demos
