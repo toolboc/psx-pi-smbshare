@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#If a USB drive is present, do not initialize the samba share
+USBDisk_Present=`sudo fdisk -l | grep /dev/sd`
+if [ -n "${USBDisk_Present}" ]
+then
+    echo "exited to due to presence of USB storage"
+    exit
+fi
+
 #restart ps3netsrv++
 pkill ps3netsrv++
 /usr/local/bin/ps3netsrv++ -d /share
