@@ -54,6 +54,19 @@ Create a file on **/boot** named **wpa_supplicant.conf** and supply the followin
 When the pi is next booted, it will attempt to connect to the wireless network in this configuration.  You are then able to access the raspberry pi on the network and allow for outbound connections from a PS2/PS3 over the wireless network.  
 The raspberry pi is configured to have a hostname `smbshare` with a user `pi` and a password of `raspberry`.  
 
+## Disable DHCP server on Raspberry Pi
+
+The default behavior of psx-pi-smbshare is to enable a console-to-pi connection by means of the high speed ethernet port available on many video game consoles. This connection is used to provide a direct access from the console to the services on the pi (WiFi, XLinkKai, SMB, ps3netsrv etc), and by default, a DHCP server runs on the ethernet interface (eth0) to facilitate this.
+
+In some use cases, the user may wish to connect the Raspberry Pi via ethernet to an external router (for example: [to have psx-pi-smbshare act as an XLinkKai server for primarily PSP games](https://github.com/toolboc/psx-pi-smbshare/issues/21)).  To disable the DHCP server that would usually run automatically on this interface, [ssh into your device](https://www.raspberrypi.org/documentation/remote-access/ssh/) and execute the following command to modify the startup scripts that run at boot time:
+```
+crontab -e
+```
+Next, find and comment the line containing `@reboot sudo bash /home/pi/wifi-to-eth-route.sh` by adding a '#' as shown below:
+```
+#@reboot sudo bash /home/pi/wifi-to-eth-route.sh
+```
+
 ## Accessing the XLink Kai Service
 Visit http://smbshare:34522/ or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/
 
