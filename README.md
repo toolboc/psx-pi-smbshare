@@ -209,6 +209,10 @@ Don't forget to select "Save Config" when you return to "Settings"
 
 ## Playing Halo 2 online with Xlink Kai on Xbox
 
+### Video Demonstration
+
+[![Halo 2 XLink Kai Raspberry Pi Wireless Gameplay](https://img.youtube.com/vi/3m1nWdHbVOI/0.jpg)](https://www.youtube.com/watch?v=3m1nWdHbVOI)
+
 *Prerequisites*
 * An original Xbox or Xbox 360 with backwards compatibility support
 * A copy of Halo 2
@@ -257,10 +261,6 @@ Don't forget to select "Save Config" when you return to "Settings"
 Note: XlinkKai will only work on one network interface (wifi or ethernet) at a time and will lock onto the first interface connected to from a compatible device until reboot
 
 ## Playing PSP games online with Xlink Kai on PSP
-
-### Video Demonstration
-
-[![Halo 2 XLink Kai Raspberry Pi Wireless Gameplay](https://img.youtube.com/vi/3m1nWdHbVOI/0.jpg)](https://www.youtube.com/watch?v=3m1nWdHbVOI)
 
 *Prerequisites*
 * A wifi capable PSP
