@@ -56,7 +56,7 @@ The raspberry pi is configured to have a hostname `smbshare` with a user `pi` an
 
 ## Disable DHCP server on Raspberry Pi
 
-The default behavior of psx-pi-smbshare is to enable a console-to-pi connection by means of the high speed ethernet port available on many video game consoles. This connection is used to provide a direct access from the console to the services on the pi (WiFi, XLinkKai, SMB, ps3netsrv etc), and by default, a DHCP server runs on the ethernet interface (eth0) to facilitate this.
+The default behavior of psx-pi-smbshare is to enable a console-to-pi connection by means of the high speed ethernet port available on many video game consoles. This connection is used to provide a direct access from the console to the services on the pi (WiFi, XLinkKai, SMB, ps3netsrv etc), and by default, a DHCP server runs on the ethernet interface (eth0) to facilitate this.  The following steps will describe how to disable this mechanism and is not recommended for typical users.  Please be aware that disabling the DHCP server will produce a side-effect of [no longer being able to directly connect your video game console to the pi via the ethernet interface](https://github.com/toolboc/psx-pi-smbshare/issues/22#issuecomment-667469343).    
 
 In some use cases, the user may wish to connect the Raspberry Pi via ethernet to an external router (for example: [to have psx-pi-smbshare act as an XLinkKai server for primarily PSP games](https://github.com/toolboc/psx-pi-smbshare/issues/21)).  To disable the DHCP server that would usually run automatically on this interface, [ssh into your device](https://www.raspberrypi.org/documentation/remote-access/ssh/) and execute the following command to modify the startup scripts that run at boot time:
 ```
