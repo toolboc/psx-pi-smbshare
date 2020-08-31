@@ -86,6 +86,8 @@ Plug and play auto-sharing of USB storage devices over SMB is supported:
     
 * When a USB drive is removed, the device falls back to sharing the Micro-SD card @ `\\SMBSHARE\share` 
 
+* Note that some USB drives (particularly larger enclosure types) may require use of a powered USB Hub to supply adequate current to the device
+
 ## Forwarding Active FTP session to a connected device
 Assuming your console / device has an ip of 192.168.2.2, you may run the following script to forward an Active FTP session:
 
