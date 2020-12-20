@@ -19,6 +19,8 @@ psx-pi-smbshare is a preconfigured Raspbian based image for Raspberry Pi 1, 2, 3
 
 An [Xlink Kai](http://www.teamxlink.co.uk/) client is also included and accessible on the device at http://smbshare:34522/.  This allows for multi-player gaming over extended LAN.  The service is possible to use on a variety of devices including PS2, PS3, PS4, Xbox, Xbox 360, Xbox One, Gamecube, Switch, Wii, Wii U (and PSP).  Just connect an ethernet cable to your game console and access the Xlink Kai Service over Wi-Fi with a smart phone, tablet, or computer.
 
+![image](https://user-images.githubusercontent.com/2018336/102703167-08004c00-4231-11eb-931d-3046ccd117ac.png)
+
 ## What you can do with it
 psx-pi-smbshare works out of the box on PS3 with [MultiMAN](http://www.psx-place.com/threads/update2-multiman-v-04-81-00-01-02-base-update-stealth-for-cex-dex-updates-by-deank.12145/).  This functionality allows you to stream and backup up various games and media to the Samba share service running on the Raspberry Pi.
 
