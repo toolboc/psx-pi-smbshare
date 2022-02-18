@@ -75,6 +75,7 @@ pkill ps3netsrv++
 #create a new smb share for the mounted drive
 cat <<EOS | sudo tee /etc/samba/smb.conf
 [global]
+server min protocol = NT1
 workgroup = WORKGROUP
 usershare allow guests = yes
 map to guest = bad user
