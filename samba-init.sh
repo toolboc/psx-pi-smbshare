@@ -14,6 +14,7 @@ pkill ps3netsrv++
 
 sudo cat <<'EOF' | sudo tee /etc/samba/smb.conf
 [global]
+server min protocol = NT1
 workgroup = WORKGROUP
 usershare allow guests = yes
 map to guest = bad user
