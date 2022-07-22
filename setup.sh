@@ -46,8 +46,8 @@ wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/setup-wifi
 chmod 755 /home/pi/setup-wifi-access-point.sh
 
 # Install Xlink Kai
-wget -q -O - https://repo.teamxlink.co.uk/debian/KEY.gpg | sudo apt-key add -
-sudo echo 'deb https://repo.teamxlink.co.uk/debian/ /' > /etc/apt/sources.list.d/teamxlink.list
+sudo curl https://repo.teamxlink.co.uk/debian/KEY.asc --create-dirs -o /usr/share/keyrings/teamxlink.asc
+echo 'deb [signed-by=/usr/share/keyrings/teamxlink.asc] https://repo.teamxlink.co.uk/debian/ /' | sudo tee /etc/apt/sources.list.d/teamxlink.list
 sudo apt-get update
 sudo apt-get install xlinkkai
 
@@ -65,7 +65,7 @@ wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/automount-
 chmod 755 /home/pi/automount-usb.sh
 sudo /home/pi/automount-usb.sh
 
-# Set samba-init + ps3netsrv, wifi-to-eth-route, setup-wifi-access-point, and Xlink Kai to run on startup
+# Set samba-init + ps3netsrv, wifi-to-eth-route, setup-wifi-access-point, and XLink Kai to run on startup
 { echo -e "@reboot sudo bash /usr/local/bin/samba-init.sh\n@reboot sudo bash /home/pi/wifi-to-eth-route.sh && sudo bash /home/pi/setup-wifi-access-point.sh\n@reboot sudo bash /home/pi/launchkai.sh"; } | crontab -u pi -
 
 # Start services
@@ -73,7 +73,7 @@ sudo /usr/local/bin/samba-init.sh
 sudo /home/pi/wifi-to-eth-route.sh
 sudo /home/pi/setup-wifi-access-point.sh
 ps3netsrv++ -d /share/
-sudo kaiengine_arm
+sudo kaiengine
 
 # Not a bad idea to reboot
 sudo reboot
