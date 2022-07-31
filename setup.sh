@@ -56,7 +56,7 @@ sudo apt-get install xlinkkai
 
 cat <<'EOF' > /home/pi/launchkai.sh
 while true; do
-    apt-get install xlinkkai
+    apt-get install xlinkkai -y
     kaiengine
     sleep 1
 done
