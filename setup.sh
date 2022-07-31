@@ -45,6 +45,9 @@ sudo apt-get install -y hostapd bridge-utils
 wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/setup-wifi-access-point.sh -O /home/pi/setup-wifi-access-point.sh
 chmod 755 /home/pi/setup-wifi-access-point.sh
 
+# Remove old Xlink Kai Repo
+sudo rm -rf /etc/apt/sources.list.d/teamxlink.list
+
 # Install Xlink Kai
 sudo curl https://repo.teamxlink.co.uk/debian/KEY.asc --create-dirs -o /usr/share/keyrings/teamxlink.asc
 echo 'deb [signed-by=/usr/share/keyrings/teamxlink.asc] https://repo.teamxlink.co.uk/debian/ /' | sudo tee /etc/apt/sources.list.d/teamxlink.list
@@ -53,7 +56,8 @@ sudo apt-get install xlinkkai
 
 cat <<'EOF' > /home/pi/launchkai.sh
 while true; do
-    /usr/sbin/kaiengine
+    apt-get install xlinkkai
+    kaiengine
     sleep 1
 done
 EOF
