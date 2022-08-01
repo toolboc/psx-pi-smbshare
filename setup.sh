@@ -52,7 +52,7 @@ chmod 755 /home/pi/setup-wifi-access-point.sh
 sudo rm -rf /etc/apt/sources.list.d/teamxlink.list
 
 # Set up teamxlink repository and install XLink Kai
-sudo curl https://repo.teamxlink.co.uk/raspbian/KEY.asc --create-dirs -o /usr/share/keyrings/teamxlink.asc
+sudo curl https://repo.teamxlink.co.uk/debian/KEY.asc --create-dirs -o /usr/share/keyrings/teamxlink.asc
 echo 'deb [signed-by=/usr/share/keyrings/teamxlink.asc] https://repo.teamxlink.co.uk/raspbian/ /' | sudo tee /etc/apt/sources.list.d/teamxlink.list
 sudo apt-get update
 sudo apt-get install xlinkkai
