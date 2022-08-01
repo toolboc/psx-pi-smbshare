@@ -20,7 +20,7 @@ sudo apt-get -y update
 sudo apt-get -y upgrade
 
 # Ensure basic tools are present
-sudo apt-get -y screen wget git curl coreutils
+sudo apt-get -y install screen wget git curl coreutils
 
 # Install and configure Samba
 sudo apt-get install -y samba samba-common-bin
