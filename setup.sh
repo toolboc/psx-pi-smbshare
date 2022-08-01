@@ -60,7 +60,7 @@ sudo apt-get install xlinkkai
 # Write XLink Kai launch script
 cat <<'EOF' > /home/pi/launchkai.sh
 echo "Checking for XLink Kai updates"
-apt-get install xlinkkai -y
+sudo apt-get install xlinkkai -y
 echo "Launching XLink Kai"
 while true; do
     screen -dmS kai kaiengine
