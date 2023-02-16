@@ -83,7 +83,7 @@ sudo /usr/local/bin/samba-init.sh
 sudo /home/pi/wifi-to-eth-route.sh
 sudo /home/pi/setup-wifi-access-point.sh
 ps3netsrv++ -d /share/
-/home/pi/launchkai.sh
+screen -dmS kailauncher /home/pi/launchkai.sh
 
 # Not a bad idea to reboot
 sudo reboot
