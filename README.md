@@ -204,7 +204,7 @@ Don't forget to select "Save Config" when you return to "Settings"
 1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
 2. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
 3. Add a second Wi-fi dongle to the pi as described in [Using a second wifi interface as an access point to XLink Kai](https://github.com/toolboc/psx-pi-smbshare#using-a-second-wifi-interface-as-an-access-point-to-xlink-kai) 
-4. Configure your Switch to connect to the "XLinkKai" access point and set the `DNS Settings` to manual and set the `Primary DNS` to 10.254.0.1 and ensure that `Autoconnect` is set to "on" as described in the [XLinkKai Nintendo Switch Tutorial](https://www.teamxlink.co.uk/forum/viewtopic.php?p=240498).
+4. Configure your Switch to connect to the "XLinkKai" access point and set the `DNS Settings` to manual and set the `Primary DNS` to 10.254.0.1 and ensure that `Autoconnect` is set to "on" as described in the [XLinkKai Nintendo Switch Tutorial](https://www.teamxlink.co.uk/wiki/Nintendo_Switch_XLink_Kai_Setup).
 4. Vist the XLink Kai service running on the pi @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your XLink Kai account
 5. In the XLink Kai portal, select `Configuration` and ensure that `Network Adapter` is set to to `wlan1` to ensure that XLinkKai captures packets from the proper wireless interface.
 6. In the XLink Kai portal , select `Game Arenas` and navigate to the room for the game that you wish to play
@@ -325,7 +325,7 @@ Note: XLinkKai will only work on one network interface (wifi or ethernet) at a t
 
 [![GameCube online with psx-pi-smbshare](https://img.youtube.com/vi/pa-AM05EwQ4/0.jpg)](https://www.youtube.com/watch?v=pa-AM05EwQ4)
 
-See this [article on the NintendoDuo Tumblr page](https://nintendoduo.tumblr.com/post/185437788676/how-to-take-your-gamecube-online-with-a-raspberry) for a detailed guide on "How to Take Your GameCube Online With a Raspberry Pi and psx-pi-smbshare".
+See this [article on the NintendoDuo Tumblr page](https://nintendoduo.tumblr.com/post/185437788676/how-to-take-your-gamecube-online-with-a-raspberry) or the [XLink Kai GameCube Guide](https://www.teamxlink.co.uk/wiki/Nintendo_GameCube_Tutorial) for a detailed guide on "How to Take Your GameCube Online With a Raspberry Pi and psx-pi-smbshare".
 
 # Demos
 * [Launching PS2 Backups with OPL](https://www.youtube.com/watch?v=FJEdWW6YhJo&feature=youtu.be)
