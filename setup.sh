@@ -15,6 +15,15 @@
 # This setup should work fine out the box with OPL and multiman
 # Per default configuration, the smbserver is accessible on 192.168.2.1
 
+
+USER=`whoami`
+
+# Make sure we're not root otherwise the paths will be wrong
+if [ $USER = "root" ]; then
+  echo "Do not run this script as root or with sudo"
+  exit 1
+fi
+
 # Update packages
 sudo apt-get -y update
 sudo apt-get -y upgrade
@@ -24,9 +33,9 @@ sudo apt-get -y install screen wget git curl coreutils
 
 # Install and configure Samba
 sudo apt-get install -y samba samba-common-bin
-wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/samba-init.sh -O /home/pi/samba-init.sh
-chmod 755 /home/pi/samba-init.sh
-sudo cp /home/pi/samba-init.sh /usr/local/bin
+wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/samba-init.sh -O /home/${USER}/samba-init.sh
+chmod 755 /home/${USER}/samba-init.sh
+sudo cp /home/${USER}/samba-init.sh /usr/local/bin
 sudo mkdir -m 1777 /share
 
 # Install ps3netsrv
@@ -40,13 +49,13 @@ sudo cp ps3netsrv++ /usr/local/bin
 
 # Install wifi-to-eth route settings
 sudo apt-get install -y dnsmasq
-wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/wifi-to-eth-route.sh -O /home/pi/wifi-to-eth-route.sh
-chmod 755 /home/pi/wifi-to-eth-route.sh
+wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/wifi-to-eth-route.sh -O /home/${USER}/wifi-to-eth-route.sh
+chmod 755 /home/${USER}/wifi-to-eth-route.sh
 
 # Install setup-wifi-access-point settings
 sudo apt-get install -y hostapd bridge-utils
-wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/setup-wifi-access-point.sh -O /home/pi/setup-wifi-access-point.sh
-chmod 755 /home/pi/setup-wifi-access-point.sh
+wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/setup-wifi-access-point.sh -O /home/${USER}/setup-wifi-access-point.sh
+chmod 755 /home/${USER}/setup-wifi-access-point.sh
 
 # Remove old XLink Kai Repo if present
 sudo rm -rf /etc/apt/sources.list.d/teamxlink.list
@@ -63,7 +72,7 @@ sudo apt-get update
 sudo apt-get install -y xlinkkai
 
 # Write XLink Kai launch script
-cat <<'EOF' > /home/pi/launchkai.sh
+cat <<'EOF' > /home/${USER}/launchkai.sh
 echo "Checking for XLink Kai updates"
 sudo apt-get install xlinkkai -y
 echo "Launching XLink Kai"
@@ -73,22 +82,22 @@ while true; do
 done
 EOF
 
-chmod 755 /home/pi/launchkai.sh
+chmod 755 /home/${USER}/launchkai.sh
 
 # Install USB automount settings
-wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/automount-usb.sh -O /home/pi/automount-usb.sh
-chmod 755 /home/pi/automount-usb.sh
-sudo /home/pi/automount-usb.sh
+wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/automount-usb.sh -O /home/${USER}/automount-usb.sh
+chmod 755 /home/${USER}/automount-usb.sh
+sudo /home/${USER}/automount-usb.sh
 
 # Set samba-init + ps3netsrv, wifi-to-eth-route, setup-wifi-access-point, and XLink Kai to run on startup
-{ echo -e "@reboot sudo bash /usr/local/bin/samba-init.sh\n@reboot sudo bash /home/pi/wifi-to-eth-route.sh && sudo bash /home/pi/setup-wifi-access-point.sh\n@reboot bash /home/pi/launchkai.sh"; } | crontab -u pi -
+{ echo -e "@reboot sudo bash /usr/local/bin/samba-init.sh\n@reboot sudo bash /home/${USER}/wifi-to-eth-route.sh && sudo bash /home/${USER}/setup-wifi-access-point.sh\n@reboot bash /home/${USER}/launchkai.sh"; } | crontab -u pi -
 
 # Start services
 sudo /usr/local/bin/samba-init.sh
-sudo /home/pi/wifi-to-eth-route.sh
-sudo /home/pi/setup-wifi-access-point.sh
+sudo /home/${USER}/wifi-to-eth-route.sh
+sudo /home/${USER}/setup-wifi-access-point.sh
 ps3netsrv++ -d /share/
-screen -dmS kailauncher /home/pi/launchkai.sh
+screen -dmS kailauncher /home/${USER}/launchkai.sh
 
 # Not a bad idea to reboot
 sudo reboot
