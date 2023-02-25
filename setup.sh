@@ -17,6 +17,13 @@
 
 
 USER=`whoami`
+
+# Make sure we're not root otherwise the paths will be wrong
+if [ $USER = "root" ]; then
+  echo "Do not run this script as root or with sudo"
+  exit 1
+fi
+
 # Update packages
 sudo apt-get -y update
 sudo apt-get -y upgrade
