@@ -17,7 +17,7 @@ sudo ./setup.sh
 ## How it works
 psx-pi-smbshare is a preconfigured Raspbian based image for Raspberry Pi 1, 2, 3 and [4](https://www.youtube.com/watch?v=8qaJcbSye-E).  It runs a [Samba](https://en.wikipedia.org/wiki/Samba_(software)) share, a pi-compatible build of [ps3netsrv](https://github.com/dirkvdb/ps3netsrv--), and reconfigures the ethernet port to act as a router.  This gives low-latency, direct access to the Samba service through an ethernet cable connection between a PS2/PS3 and Raspberry Pi.  This configuration is achieved by running [setup.sh](/setup.sh).  A pre-supplied [image](https://github.com/toolboc/psx-pi-smbshare/releases/) can be applied directly to a Micro-SD card using something like [etcher.io](https://etcher.io/).  The image allows you to use the full available space on the SD card after the OS is first booted.
 
-An [Xlink Kai](http://www.teamxlink.co.uk/) client is also included and accessible on the device at http://smbshare:34522/.  This allows for multi-player gaming over extended LAN.  The service is possible to use on a variety of devices including PS2, PS3, PS4, Xbox, Xbox 360, Xbox One, Gamecube, Switch, Wii, Wii U (and PSP).  Just connect an ethernet cable to your game console and access the Xlink Kai Service over Wi-Fi with a smart phone, tablet, or computer.
+An [XLink Kai](http://www.teamxlink.co.uk/) client is also included and accessible on the device at http://smbshare:34522/.  This allows for multi-player gaming over extended LAN.  The service is possible to use on a variety of devices including PS2, PS3, PS4, Xbox, Xbox 360, Xbox One, Gamecube, Switch, Wii, Wii U (and PSP).  Just connect an ethernet cable to your game console and access the XLink Kai Service over Wi-Fi with a smart phone, tablet, or computer.
 
 ![image](https://user-images.githubusercontent.com/2018336/102703167-08004c00-4231-11eb-931d-3046ccd117ac.png)
 
@@ -193,25 +193,25 @@ Don't forget to select "Save Config" when you return to "Settings"
 
     A detailed guide is available @ http://www.ps2-home.com/forum/viewtopic.php?f=64&t=5002
 
-## Playing LAN enabled Nintendo Switch games online with Xlink Kai on Nintendo Switch
+## Playing LAN enabled Nintendo Switch games online with XLink Kai on Nintendo Switch
 
 *Prerequisites*
 * A Nintendo Switch
 * A LAN compatible Switch game
-* An Xlink Kai account from http://www.teamxlink.co.uk/
+* An XLink Kai account from http://www.teamxlink.co.uk/
 
 *Steps*
 1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
 2. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
-3. Add a second Wi-fi dongle to the pi as described in [Using a second wifi interface as an access point to Xlink Kai](https://github.com/toolboc/psx-pi-smbshare#using-a-second-wifi-interface-as-an-access-point-to-xlink-kai) 
-4. Configure your Switch to connect to the "XlinkKai" access point and set the `DNS Settings` to manual and set the `Primary DNS` to 10.254.0.1 and ensure that `Autoconnect` is set to "on" as described in the [XlinkKai Nintendo Switch Tutorial](https://www.teamxlink.co.uk/forum/viewtopic.php?p=240498).
-4. Vist the Xlink Kai service running on the pi @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your Xlink Kai account
-5. In the Xlink Kai portal, select `Configuration` and ensure that `Network Adapter` is set to to `wlan1` to ensure that XlinkKai captures packets from the proper wireless interface.
-6. In the Xlink Kai portal , select `Game Arenas` and navigate to the room for the game that you wish to play
-7. Launch the game on your Switch and start up LAN mode and create a LAN game (Do not confuse with Local Wireless, many games involve a special keypress combination to enable LAN mode, please research accordingly).  If asked to connect to a network during this process, select the "XlinkKai" SSID that is being served from the raspberry pi.
+3. Add a second Wi-fi dongle to the pi as described in [Using a second wifi interface as an access point to XLink Kai](https://github.com/toolboc/psx-pi-smbshare#using-a-second-wifi-interface-as-an-access-point-to-xlink-kai) 
+4. Configure your Switch to connect to the "XLinkKai" access point and set the `DNS Settings` to manual and set the `Primary DNS` to 10.254.0.1 and ensure that `Autoconnect` is set to "on" as described in the [XLinkKai Nintendo Switch Tutorial](https://www.teamxlink.co.uk/forum/viewtopic.php?p=240498).
+4. Vist the XLink Kai service running on the pi @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your XLink Kai account
+5. In the XLink Kai portal, select `Configuration` and ensure that `Network Adapter` is set to to `wlan1` to ensure that XLinkKai captures packets from the proper wireless interface.
+6. In the XLink Kai portal , select `Game Arenas` and navigate to the room for the game that you wish to play
+7. Launch the game on your Switch and start up LAN mode and create a LAN game (Do not confuse with Local Wireless, many games involve a special keypress combination to enable LAN mode, please research accordingly).  If asked to connect to a network during this process, select the "XLinkKai" SSID that is being served from the raspberry pi.
 8. Wait for players to join and have fun!
 
-## Playing Halo 2 online with Xlink Kai on Xbox
+## Playing Halo 2 online with XLink Kai on Xbox
 
 ### Video Demonstration
 
@@ -220,23 +220,23 @@ Don't forget to select "Save Config" when you return to "Settings"
 *Prerequisites*
 * An original Xbox or Xbox 360 with backwards compatibility support
 * A copy of Halo 2
-* An Xlink Kai account from http://www.teamxlink.co.uk/
+* An XLink Kai account from http://www.teamxlink.co.uk/
 
 *Steps*
 1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
 2. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
 3. Plug the pi into the Xbox ethernet port and verify that you are able to obtain an ip automatically in Network Settings
-4. Vist the Xlink Kai service running on the pi @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your Xlink Kai account
-5. Select an available Halo game from the Xlink Kai portal (there are usually a few running in South America)
+4. Vist the XLink Kai service running on the pi @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your XLink Kai account
+5. Select an available Halo game from the XLink Kai portal (there are usually a few running in South America)
 6. Launch Halo 2 and select "System Link"
 7. Join a game and have fun!
 
-## Playing SOCOM 2 online with Xlink Kai on PS2
+## Playing SOCOM 2 online with XLink Kai on PS2
 
 *Prerequisites*
 * A Fat PS2 with Network Adapter or Slim PS2
 * A copy of SOCOM 2 for PS2
-* An Xlink Kai account from http://www.teamxlink.co.uk/
+* An XLink Kai account from http://www.teamxlink.co.uk/
 
 *Steps*
 1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
@@ -247,12 +247,12 @@ Don't forget to select "Save Config" when you return to "Settings"
         Console IP: 192.168.2.2
         Subnet Mask: 255.255.255.0
         Router IP/Gateway: 192.168.2.1
-5. Vist the Xlink Kai service running on the pi @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your Xlink Kai account
-6. Select an available SOCOM 2 game from the Xlink Kai portal (there is usually one running at all times)
+5. Vist the XLink Kai service running on the pi @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your XLink Kai account
+6. Select an available SOCOM 2 game from the XLink Kai portal (there is usually one running at all times)
 7. Head back to the SOCOM 2 title screen and select "LAN"
 8. Join a game and have fun!
 
-## Using a Second WiFi interface as an Access Point to Xlink Kai 
+## Using a Second WiFi interface as an Access Point to XLink Kai 
 *Prerequisites*
 * 1 external wifi dongle for RPi 2/3 or 2 external wifi dongles for RPi 1
 
@@ -260,17 +260,17 @@ Don't forget to select "Save Config" when you return to "Settings"
 1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
 2. Plug in the external wifi dongle(s)
 3. Configure Wi-fi per the steps above in ["Configuring the Wireless Network"](https://github.com/toolboc/psx-pi-smbshare#configuring-wireless-network)
-4. Configure the device to connect to "XlinkKai" SSID when the pi has booted using Password `XlinkKai` 
+4. Configure the device to connect to "XLinkKai" SSID when the pi has booted using Password `XLinkKai` 
 
-Note: XlinkKai will only work on one network interface (wifi or ethernet) at a time and will lock onto the first interface connected to from a compatible device until reboot
+Note: XLinkKai will only work on one network interface (wifi or ethernet) at a time and will lock onto the first interface connected to from a compatible device until reboot
 
-## Playing PSP games online with Xlink Kai on PSP
+## Playing PSP games online with XLink Kai on PSP
 
 *Prerequisites*
 * A wifi capable PSP
 * 1 external wifi dongle for RPi 2/3 or 2 external wifi dongles for RPi 1 (*tested with an [Edimax-EW-7811Un](https://www.amazon.com/Edimax-EW-7811Un-150Mbps-Raspberry-Supports/dp/B003MTTJOY) wifi dongle*)
 * A Multiplayer game which supports Ad-Hoc 
-* An Xlink Kai account from http://www.teamxlink.co.uk/
+* An XLink Kai account from http://www.teamxlink.co.uk/
 
 *Steps*
 1. Burn the [latest psx-pi-smbshare image](https://github.com/toolboc/psx-pi-smbshare/releases) to a Micro-SD card
@@ -314,12 +314,12 @@ Note: XlinkKai will only work on one network interface (wifi or ethernet) at a t
     Note: You must run this script after starting an Ad-Hoc multiplayer session on the PSP
 
 8. Exit the Ad-Hoc multiplayer session and start a new one
-9. Vist the Xlink Kai service running @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your Xlink Kai account
+9. Vist the XLink Kai service running @ http://smbshare:34522 or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/ and login with your XLink Kai account
 10. Select "Metrics" and scroll down to "Found Consoles" and you should see your PSP device
-11. Select an available PSP game from the Xlink Kai portal 
+11. Select an available PSP game from the XLink Kai portal 
 12. Join a game and have fun!
 
-## Playing Mario Kart Double Dash online with Xlink Kai on Gamecube
+## Playing Mario Kart Double Dash online with XLink Kai on Gamecube
 
 ### Video Demonstration
 
@@ -337,5 +337,5 @@ Thx to the following:
 * danielb for [OPLM](http://www.ps2-home.com/forum/viewtopic.php?f=64&t=189)
 * dirkvdb for [ps3netsrv--](https://github.com/dirkvdb/ps3netsrv--)
 * arpitjindal97 for [wifi-to-eth-route.sh](https://github.com/arpitjindal97/raspbian-recipes/blob/master/wifi-to-eth-route.sh)
-* Team Xlink for [Xlink Kai](http://www.teamxlink.co.uk/)
+* Team XLink for [XLink Kai](http://www.teamxlink.co.uk/)
 * Pul Gasari for [Testing streaming games from Raspberry Pi to PS2 using psx-pi-smbshare](https://www.youtube.com/watch?v=FJEdWW6YhJo&feature=youtu.be)
