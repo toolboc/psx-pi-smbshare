@@ -80,6 +80,7 @@ if [ "$ETHROUTE" = true ]; then
   wget https://raw.githubusercontent.com/georgewoodall82/psx-pi-smbshare-updated/master/wifi-to-eth-route.sh -O /home/${USER}/wifi-to-eth-route.sh
 else
   touch /home/${USER}/wifi-to-eth-route.sh
+fi
 chmod 755 /home/${USER}/wifi-to-eth-route.sh
 
 if [ "$WIFIACCESSPOINT" = true ]; then
