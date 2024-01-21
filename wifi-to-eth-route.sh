@@ -41,7 +41,7 @@ sudo rm -rf /etc/dnsmasq.d/*
 
 echo -e "interface=$eth\n\
 bind-dynamic\n\
-server=8.8.8.8\n\
+server=1.1.1.1\n\
 domain-needed\n\
 bogus-priv\n\
 dhcp-range=$dhcp_range_start,$dhcp_range_end,$dhcp_time" > /etc/dnsmasq.d/custom-dnsmasq.conf

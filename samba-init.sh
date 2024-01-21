@@ -8,9 +8,12 @@ then
     exit
 fi
 
-#restart ps3netsrv++
-pkill ps3netsrv++
-/usr/local/bin/ps3netsrv++ -d /share
+#if /usr/local/bin/ps3netsrv++ exists
+if [ -f /usr/local/bin/ps3netsrv++ ]; then
+  #restart ps3netsrv++
+  pkill ps3netsrv++
+  /usr/local/bin/ps3netsrv++ -d /share
+fi
 
 sudo cat <<'EOF' | sudo tee /etc/samba/smb.conf
 [global]
@@ -20,7 +23,7 @@ usershare allow guests = yes
 map to guest = bad user
 allow insecure wide links = yes
 [share]
-Comment = Pi shared folder
+Comment = shared folder
 Path = /share
 Browseable = yes
 Writeable = Yes
@@ -29,11 +32,11 @@ create mask = 0777
 directory mask = 0777
 Public = yes
 Guest ok = yes
-force user = pi
+force user = userplaceholder
 follow symlinks = yes
 wide links = yes
 EOF
 
 #if you wish to create a samba user with password you can use the following:
-#sudo smbpasswd -a pi
+#sudo smbpasswd -a userplaceholder
 sudo /etc/init.d/smbd restart
