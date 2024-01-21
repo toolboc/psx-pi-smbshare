@@ -118,4 +118,4 @@ sudo sed -i "s/userplaceholder/${USER}/g" /usr/local/bin/automount.sh
 sudo chmod +x /usr/local/bin/automount.sh
 
 # Reload udev rules and triggers
-sudo udevadm control --reload-rules && udevadm trigger
+sudo udevadm control --reload-rules && sudo udevadm trigger
