@@ -42,6 +42,12 @@ else
   WIFIACCESSPOINT=false
 fi
 
+if whiptail --yesno "Would you like to share wifi over ethernet, for devices without wifi? (Ethernet will no longer work for providing the pi an internet connection)" 9 55; then
+  ETHROUTE=true
+else
+  ETHROUTE=false
+fi
+
 # Update packages
 sudo apt-get -y update
 sudo apt-get -y upgrade
@@ -68,9 +74,12 @@ if [ "$PS3NETSRV" = true ]; then
   sudo cp ps3netsrv++ /usr/local/bin
 fi
 
-# Install wifi-to-eth route settings
-sudo apt-get install -y dnsmasq
-wget https://raw.githubusercontent.com/georgewoodall82/psx-pi-smbshare-updated/master/wifi-to-eth-route.sh -O /home/${USER}/wifi-to-eth-route.sh
+if [ "$ETHROUTE" = true ]; then
+  # Install wifi-to-eth route settings
+  sudo apt-get install -y dnsmasq
+  wget https://raw.githubusercontent.com/georgewoodall82/psx-pi-smbshare-updated/master/wifi-to-eth-route.sh -O /home/${USER}/wifi-to-eth-route.sh
+else
+  touch /home/${USER}/wifi-to-eth-route.sh
 chmod 755 /home/${USER}/wifi-to-eth-route.sh
 
 if [ "$WIFIACCESSPOINT" = true ]; then
