@@ -57,7 +57,7 @@ sudo apt-get -y install screen wget git curl coreutils iptables hostapd
 
 # Install and configure Samba
 sudo apt-get install -y samba samba-common-bin
-wget https://raw.githubusercontent.com/georgewoodall82/psx-pi-smbshare-updated/master/samba-init.sh -O /home/${USER}/samba-init.sh
+wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/samba-init.sh -O /home/${USER}/samba-init.sh
 sed -i "s/userplaceholder/${USER}/g" /home/${USER}/samba-init.sh
 chmod 755 /home/${USER}/samba-init.sh
 sudo cp /home/${USER}/samba-init.sh /usr/local/bin
@@ -77,7 +77,7 @@ fi
 if [ "$ETHROUTE" = true ]; then
   # Install wifi-to-eth route settings
   sudo apt-get install -y dnsmasq
-  wget https://raw.githubusercontent.com/georgewoodall82/psx-pi-smbshare-updated/master/wifi-to-eth-route.sh -O /home/${USER}/wifi-to-eth-route.sh
+  wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/wifi-to-eth-route.sh -O /home/${USER}/wifi-to-eth-route.sh
 else
   touch /home/${USER}/wifi-to-eth-route.sh
 fi
@@ -86,7 +86,7 @@ chmod 755 /home/${USER}/wifi-to-eth-route.sh
 if [ "$WIFIACCESSPOINT" = true ]; then
   # Install setup-wifi-access-point settings
   sudo apt-get install -y hostapd bridge-utils
-  wget https://raw.githubusercontent.com/georgewoodall82/psx-pi-smbshare-updated/master/setup-wifi-access-point.sh -O /home/${USER}/setup-wifi-access-point.sh
+  wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/setup-wifi-access-point.sh -O /home/${USER}/setup-wifi-access-point.sh
 else
   touch /home/${USER}/setup-wifi-access-point.sh
 fi
@@ -127,7 +127,7 @@ fi
 chmod 755 /home/${USER}/launchkai.sh
 
 # Install USB automount settings
-wget https://raw.githubusercontent.com/georgewoodall82/psx-pi-smbshare-updated/master/automount-usb.sh -O /home/${USER}/automount-usb.sh
+wget https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/automount-usb.sh -O /home/${USER}/automount-usb.sh
 chmod 755 /home/${USER}/automount-usb.sh
 /home/${USER}/automount-usb.sh
 

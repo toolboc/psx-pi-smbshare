@@ -9,7 +9,7 @@ You can see it in action in this video from [@versatileninja](https://github.com
 The following commands can be used to upgrade an existing psx-pi-smbshare device.  These instructions can also be used to convert an unsupported device into a psx-pi-smbshare (for example [Raspberry Pi4](https://github.com/toolboc/psx-pi-smbshare/issues/10) and potentially other devices running a debian based OS with an accessible ethernet port).
 ```
 cd ~
-wget -O setup.sh https://raw.githubusercontent.com/georgewoodall82/psx-pi-smbshare-updated/master/setup.sh
+wget -O setup.sh https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/setup.sh
 chmod 755 setup.sh
 ./setup.sh
 ```
