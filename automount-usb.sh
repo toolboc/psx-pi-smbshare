@@ -8,21 +8,30 @@
 # This allows for use of USB & HDD in addition to Micro-SD
 # It also creates a new Samba configuration which exposes the last attached USB drive @ //SMBSHARE/<PARTITION>
 
+USER=`whoami`
+
 # Update packages
 sudo apt-get update
 
-# Install NTFS Read/Write Support
-sudo apt-get install -y ntfs-3g
+# Install NTFS Read/Write Support and udisks2
+sudo apt-get install -y ntfs-3g udisks2
 
-# Install pmount with ExFAT support
-sudo apt-get install -y exfat-fuse exfat-utils autoconf intltool libtool libtool-bin libglib2.0-dev libblkid-dev
-cd ~
-git clone https://github.com/stigi/pmount-exfat.git
-cd pmount-exfat
-./autogen.sh
-make
-sudo make install prefix=usr
-sudo sed -i 's/not_physically_logged_allow = no/not_physically_logged_allow = yes/' /etc/pmount.conf
+# Add user to disk group
+sudo usermod -a -G disk ${USER}
+
+# Create polkit rule
+sudo cat <<'EOF' | sudo tee /etc/polkit-1/rules.d/10-udisks2.rules
+// Allow udisks2 to mount devices without authentication
+// for users in the "disk" group.
+polkit.addRule(function(action, subject) {
+    if ((action.id == "org.freedesktop.udisks2.filesystem-mount-system" ||
+         action.id == "org.freedesktop.udisks2.filesystem-mount" ||
+         action.id == "org.freedesktop.udisks2.filesystem-mount-other-seat") &&
+        subject.isInGroup("disk")) {
+        return polkit.Result.YES;
+    }
+});
+EOF
 
 # Create udev rule
 sudo cat <<'EOF' | sudo tee /etc/udev/rules.d/usbstick.rules
@@ -41,7 +50,7 @@ After=dev-%i.device
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/usr/local/bin/automount.sh %I
-ExecStop=/usr/bin/pumount /dev/%I
+ExecStop=/usr/bin/udisksctl unmount -b /dev/%I
 EOF
 
 sudo cat <<'EOF' | sudo tee /lib/systemd/system/usbstick-cleanup@.service
@@ -60,6 +69,7 @@ sudo cat <<'EOF' | sudo tee /usr/local/bin/automount.sh
 #!/bin/bash
 
 PART=$1
+UUID=`blkid /dev/${PART} -o value -s UUID`
 FS_LABEL=`lsblk -o name,label | grep ${PART} | awk '{print $2}'`
 
 if [ -z ${PART} ]
@@ -67,10 +77,12 @@ then
     exit
 fi
 
-runuser pi -s /bin/bash -c "/usr/bin/pmount --umask 000 --noatime -w --sync /dev/${PART} /media/${PART}"
+runuser userplaceholder -s /bin/bash -c "udisksctl mount -b /dev/${PART} --no-user-interaction"
 
-pkill ps3netsrv++
-/usr/local/bin/ps3netsrv++ -d /media/$PART
+if [ -f /usr/local/bin/ps3netsrv++ ]; then
+    pkill ps3netsrv++
+    /usr/local/bin/ps3netsrv++ -d /media/userplaceholder/$UUID
+fi
 
 #create a new smb share for the mounted drive
 cat <<EOS | sudo tee /etc/samba/smb.conf
@@ -81,8 +93,8 @@ usershare allow guests = yes
 map to guest = bad user
 allow insecure wide links = yes
 [share]
-Comment = Pi default shared folder
-Path = /media/$PART
+Comment = default shared folder
+Path = /media/userplaceholder/$UUID
 Browseable = yes
 Writeable = Yes
 only guest = no
@@ -90,15 +102,17 @@ create mask = 0777
 directory mask = 0777
 Public = yes
 Guest ok = yes
-force user = pi
+force user = userplaceholder
 follow symlinks = yes
 wide links = yes
 EOS
 
 #if you wish to create a samba user with password you can use the following:
-#sudo smbpasswd -a pi
+#sudo smbpasswd -a userplaceholder
 sudo /etc/init.d/smbd restart
 EOF
+
+sudo sed -i "s/userplaceholder/${USER}/g" /usr/local/bin/automount.sh
 
 # Make script executable
 sudo chmod +x /usr/local/bin/automount.sh
