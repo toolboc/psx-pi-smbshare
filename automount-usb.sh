@@ -20,6 +20,10 @@ sudo apt-get install -y ntfs-3g udisks2
 sudo usermod -a -G disk ${USER}
 
 # Create polkit rule
+sudo mkdir -p /etc/polkit-1/rules.d/
+sudo mkdir -p /etc/polkit-1/localauthority/50-local.d/
+
+# For polkit > 105
 sudo cat <<'EOF' | sudo tee /etc/polkit-1/rules.d/10-udisks2.rules
 // Allow udisks2 to mount devices without authentication
 // for users in the "disk" group.
@@ -31,6 +35,16 @@ polkit.addRule(function(action, subject) {
         return polkit.Result.YES;
     }
 });
+EOF
+
+# For polkit <= 105
+sudo cat <<'EOF' | sudo tee /etc/polkit-1/localauthority/50-local.d/10-udisks2.pkla
+[Authorize mounting of devices for group disk]
+Identity=unix-group:disk
+Action=org.freedesktop.udisks2.filesystem-mount-system;org.freedesktop.udisks2.filesystem-mount;org.freedesktop.udisks2.filesystem-mount-other-seat
+ResultAny=yes
+ResultInactive=yes
+ResultActive=yes
 EOF
 
 # Create udev rule
