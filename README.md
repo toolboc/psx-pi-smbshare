@@ -5,17 +5,8 @@ You can see it in action in this video from [@versatileninja](https://github.com
 
 [![Play PS2 Games Over SMB Using Raspberry Pi 3b+ and psx-pi-smbshare (2019)](https://img.youtube.com/vi/Ilx5NYoUkNA/0.jpg)](https://www.youtube.com/watch?v=Ilx5NYoUkNA)
 
-## Upgrading an existing install
-The following commands can be used to upgrade an existing psx-pi-smbshare device.  These instructions can also be used to convert an unsupported device into a psx-pi-smbshare (for example [Raspberry Pi4](https://github.com/toolboc/psx-pi-smbshare/issues/10) and potentially other devices running a debian based OS with an accessible ethernet port).
-```
-cd ~
-wget -O setup.sh https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/setup.sh
-chmod 755 setup.sh
-./setup.sh
-```
-
 ## How it works
-psx-pi-smbshare is a preconfigured Raspbian based image for Raspberry Pi 1, 2, 3 and [4](https://www.youtube.com/watch?v=8qaJcbSye-E).  It runs a [Samba](https://en.wikipedia.org/wiki/Samba_(software)) share, a pi-compatible build of [ps3netsrv](https://github.com/dirkvdb/ps3netsrv--), and reconfigures the ethernet port to act as a router.  This gives low-latency, direct access to the Samba service through an ethernet cable connection between a PS2/PS3 and Raspberry Pi.  This configuration is achieved by running [setup.sh](/setup.sh).  A pre-supplied [image](https://github.com/toolboc/psx-pi-smbshare/releases/) can be applied directly to a Micro-SD card using something like [etcher.io](https://etcher.io/).  The image allows you to use the full available space on the SD card after the OS is first booted.
+psx-pi-smbshare is a collection of shell scripts for the Raspberry Pi.  It can run a [Samba](https://en.wikipedia.org/wiki/Samba_(software)) share, a pi-compatible build of [ps3netsrv](https://github.com/dirkvdb/ps3netsrv--), and can reconfigure the ethernet port to act as a router.  This gives low-latency, direct access to the Samba service through an ethernet cable connection between a PS2/PS3 and Raspberry Pi.  This configuration is achieved by running [setup.sh](/setup.sh).
 
 An [XLink Kai](http://www.teamxlink.co.uk/) client is also included and accessible on the device at http://smbshare:34522/.  This allows for multi-player gaming over extended LAN.  The service is possible to use on a variety of devices including PS2, PS3, PS4, Xbox, Xbox 360, Xbox One, Gamecube, Switch, Wii, Wii U (and PSP).  Just connect an ethernet cable to your game console and access the XLink Kai Service over Wi-Fi with a smart phone, tablet, or computer.
 
@@ -31,16 +22,25 @@ psx-pi-smbshare supports an ability to route traffic from the ethernet port thro
 # Quickstart
 
 *Prerequisites*
-* Raspberry Pi 1, 2, or 3
+* Any Raspberry Pi
 * Micro-SD Card (8GB+ suggested)
 
-A detailed [video guide](https://www.youtube.com/watch?time_continue=1&v=Ilx5NYoUkNA) is provided by Project Phoenix Media which walks through the processes described below.
+## Install Raspberry Pi OS
+**If you already have Raspberry Pi OS installed, you can skip this step.**
 
-## Flash the image
-Download the latest [psx-pi-smbshare release image](https://github.com/toolboc/psx-pi-smbshare/releases/) and burn it to a Micro-SD card with [etcher.io](http://etcher.io)
+Download the latest [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager), choose your Raspberry Pi model, and flash the lite or desktop image of Raspberry Pi OS to a Micro-SD Card.
+
+## Run the Installation Script
+The following commands can be used to install psx-pi-smbshare on Raspberry Pi OS (and potentially other debian-based distros).
+```
+cd ~
+wget -O setup.sh https://raw.githubusercontent.com/toolboc/psx-pi-smbshare/master/setup.sh
+chmod 755 setup.sh
+./setup.sh
+```
 
 ## Configuring Wireless Network
-If you wish to configure the wireless network on a Raspberry Pi 2 or 3, you need to add a file to **/boot** on the Micro-SD card.  
+If you wish to configure the wireless network, you need to add a file to **/boot** on the Micro-SD card.  
 
 Create a file on **/boot** named **wpa_supplicant.conf** and supply the following (change country to a [valid 2 letter code](https://en.wikipedia.org/wiki/ISO_3166-1)):
 
@@ -53,21 +53,7 @@ Create a file on **/boot** named **wpa_supplicant.conf** and supply the followin
             psk="<PASSWORD>"
     }
 
-When the pi is next booted, it will attempt to connect to the wireless network in this configuration.  You are then able to access the raspberry pi on the network and allow for outbound connections from a PS2/PS3 over the wireless network.  
-The raspberry pi is configured to have a hostname `smbshare` with a user `pi` and a password of `raspberry`.  
-
-## Disable DHCP server on Raspberry Pi
-
-The default behavior of psx-pi-smbshare is to enable a console-to-pi connection by means of the high speed ethernet port available on many video game consoles. This connection is used to provide a direct access from the console to the services on the pi (WiFi, XLinkKai, SMB, ps3netsrv etc), and by default, a DHCP server runs on the ethernet interface (eth0) to facilitate this.  The following steps will describe how to disable this mechanism and is not recommended for typical users.  Please be aware that disabling the DHCP server will produce a side-effect of [no longer being able to directly connect your video game console to the pi via the ethernet interface](https://github.com/toolboc/psx-pi-smbshare/issues/22#issuecomment-667469343).    
-
-In some use cases, the user may wish to connect the Raspberry Pi via ethernet to an external router (for example: [to have psx-pi-smbshare act as an XLinkKai server for primarily PSP games](https://github.com/toolboc/psx-pi-smbshare/issues/21)).  To disable the DHCP server that would usually run automatically on this interface, [ssh into your device](https://www.raspberrypi.org/documentation/remote-access/ssh/) and execute the following command to modify the startup scripts that run at boot time:
-```
-crontab -e
-```
-Next, find and comment the line containing `@reboot sudo bash /home/pi/wifi-to-eth-route.sh` by adding a '#' as shown below:
-```
-#@reboot sudo bash /home/pi/wifi-to-eth-route.sh
-```
+When the pi is next booted, it will attempt to connect to the wireless network in this configuration.  You are then able to access the raspberry pi on the network and allow for outbound connections from a PS2/PS3 over the wireless network.
 
 ## Accessing the XLink Kai Service
 Visit http://smbshare:34522/ or http://<YOUR_PSX_PI_SMBSHARE_DEVICE_IP>:34522/
