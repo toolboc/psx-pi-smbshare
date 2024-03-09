@@ -49,7 +49,7 @@ EOF
 
 # Create udev rule
 sudo cat <<'EOF' | sudo tee /etc/udev/rules.d/usbstick.rules
-ACTION=="add", KERNEL=="sd[a-z][0-9]", TAG+="systemd", ENV{SYSTEMD_WANTS}="usbstick-handler@%k"
+ACTION=="add", KERNEL=="sd[a-z]*", TAG+="systemd", ENV{SYSTEMD_WANTS}="usbstick-handler@%k"
 ENV{DEVTYPE}=="usb_device", ACTION=="remove", SUBSYSTEM=="usb", RUN+="/bin/systemctl --no-block restart usbstick-cleanup@%k.service"
 EOF
 
@@ -91,11 +91,22 @@ then
     exit
 fi
 
-runuser userplaceholder -s /bin/bash -c "udisksctl mount -b /dev/${PART} --no-user-interaction"
+label="NAS"
+
+L_PART=$(blkid -L "$label" | grep -o 'sd[a-z][0-9]*')
+
+if [ -n "$L_PART" ]; then
+    echo "The device path for label '$label' is: /dev/$L_PART".
+else
+    echo "Label '$label' not found or no device path associated."
+    exit
+fi
+
+runuser pi -s /bin/bash -c "/usr/bin/pmount --umask 000 --noatime -w --sync /dev/${L_PART} /media/${L_PART}"
 
 if [ -f /usr/local/bin/ps3netsrv++ ]; then
     pkill ps3netsrv++
-    /usr/local/bin/ps3netsrv++ -d /media/userplaceholder/$UUID
+    /usr/local/bin/ps3netsrv++ -d /media/${L_PART}
 fi
 
 #create a new smb share for the mounted drive
@@ -108,7 +119,7 @@ map to guest = bad user
 allow insecure wide links = yes
 [share]
 Comment = default shared folder
-Path = /media/userplaceholder/$UUID
+Path = /media/$L_PART
 Browseable = yes
 Writeable = Yes
 only guest = no
